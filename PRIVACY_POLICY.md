@@ -1,6 +1,6 @@
 # Política de Privacidad — Asistente de Facturación DTE
 
-**Última actualización: [PENDIENTE — completar con la fecha real de publicación]**
+**Última actualización: 10 de septiembre de 2026**
 
 Esta política describe qué información maneja la extensión de Chrome
 "Asistente de Facturación DTE" y cómo se trata. Esta extensión está
@@ -142,18 +142,4 @@ momento.
 ## 10. Contacto
 
 Para preguntas sobre esta política, escriba a:
-**[PENDIENTE — correo de contacto/soporte real]**
-
----
-
-*Nota interna (quitar antes de publicar): este documento describe el
-comportamiento previsto del sistema de licencias (sección 5) tal como
-está implementado en el código de la extensión. El servidor de
-licenciamiento (Worker de Cloudflare) ya está desplegado en staging y
-la extensión ya se integró con él, con el mismo comportamiento
-descrito en la sección 5 — antes de publicar esta política, confirmar
-que el Worker de producción (todavía no creado) opere igual, o
-ajustar la sección 5 si el diseño final cambia al pasar a producción.
-Este texto no sustituye una revisión legal; se recomienda que un
-abogado confirme que cumple con cualquier obligación aplicable en El
-Salvador antes de publicarla.*
+**florleonromero0@gmail.com**
