@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es-SV">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LACRE</title>
+<meta name="description" content="LACRE — Facturación electrónica para El Salvador. Gestione DTE, clientes, productos e inventario desde el portal de Facturación Electrónica de Hacienda.">
+<meta name="theme-color" content="#122744">
+<style>
+  :root {
+    --ink: #101826;
+    --ink-soft: #45516A;
+    --paper: #F5F7FB;
+    --surface: #FFFFFF;
+    --border: #E1E6F0;
+    --primary: #122744;
+    --primary-bright: #2A5CAA;
+    --accent: #C48A1E;
+    --accent-soft: #FBF1DD;
+    --good: #1F7A56;
+    --shadow: 0 1px 2px rgba(16, 24, 38, 0.04), 0 12px 32px -16px rgba(16, 24, 38, 0.18);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #E8ECF4;
+      --ink-soft: #A9B3C8;
+      --paper: #0B1220;
+      --surface: #121A2C;
+      --border: #26314C;
+      --primary: #DCE6F7;
+      --primary-bright: #6FA1EA;
+      --accent: #E3B65A;
+      --accent-soft: #2A2313;
+      --good: #4FB98B;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: clamp(20px, 5vw, 40px); }
+  h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand .mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex: none;
+  }
+  .brand .tag { color: var(--ink-soft); font-weight: 500; font-size: 0.85rem; display: none; }
+  @media (min-width: 560px) { .brand .tag { display: inline; } }
+
+  .nav-links { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); }
+  .nav-links a.textlink {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .nav-links a.textlink:hover { color: var(--ink); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--primary); color: var(--paper); }
+  .btn-primary:hover { background: var(--primary-bright); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--ink-soft); }
+  .btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+
+  :focus-visible { outline: 2px solid var(--primary-bright); outline-offset: 2px; }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 6vw, 56px);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .hero-grid { grid-template-columns: 1.05fr 0.95fr; }
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 4.4vw, 3.05rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-block: 14px 18px;
+  }
+  .hero .lede {
+    color: var(--ink-soft);
+    font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+    max-width: 54ch;
+  }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+  /* ---------- visual del hero: torogoz + tarjeta DTE ---------- */
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .torogoz-frame {
+    position: relative;
+    width: min(440px, 70vw);
+  }
+  .torogoz-frame::before {
+    content: "";
+    position: absolute;
+    inset: -14%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--primary-bright) 24%, transparent) 0%,
+      color-mix(in srgb, var(--accent) 10%, transparent) 45%,
+      transparent 72%
+    );
+    z-index: 0;
+  }
+  .torogoz-frame img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 26px rgba(10, 20, 40, 0.22));
+  }
+
+  /* ---------- sections ---------- */
+  section { padding-block: clamp(44px, 7vw, 84px); }
+  .section-head { max-width: 62ch; margin-bottom: clamp(28px, 4vw, 44px); }
+  .section-head h2 {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-top: 10px;
+  }
+  .section-head p { color: var(--ink-soft); margin-top: 12px; font-size: 1rem; }
+
+  #que-hace { scroll-margin-top: 84px; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+  }
+  .feature-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .feature-card h3 { font-size: 1.03rem; font-weight: 700; margin-bottom: 6px; }
+  .feature-card p { color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* ---------- versión 2.0 ---------- */
+  .v2-band {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .v2-desc {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin-bottom: clamp(20px, 3vw, 28px);
+  }
+  .v2-list {
+    list-style: none;
+    margin: 0 0 clamp(24px, 3vw, 32px);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .v2-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.94rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .v2-list li svg { flex: none; color: var(--good); margin-top: 2px; }
+  .v2-callout {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--ink);
+    font-weight: 600;
+    padding: 16px 20px;
+    border-radius: 0 10px 10px 0;
+    max-width: 68ch;
+    margin-bottom: clamp(18px, 3vw, 24px);
+  }
+  .v2-closing {
+    color: var(--ink-soft);
+    font-style: italic;
+    max-width: 68ch;
+  }
+
+  /* ---------- privacy band ---------- */
+  .privacy-band {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .privacy-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  @media (min-width: 820px) {
+    .privacy-inner { grid-template-columns: 1.1fr 0.9fr; }
+  }
+  .privacy-inner h2 { font-size: clamp(1.4rem, 2.4vw, 1.85rem); font-weight: 800; margin-bottom: 12px; }
+  .privacy-inner p { color: var(--ink-soft); max-width: 56ch; }
+  .privacy-inner .link-privacidad {
+    display: inline-block;
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--primary-bright);
+    text-decoration: none;
+  }
+  .privacy-inner .link-privacidad:hover { text-decoration: underline; }
+
+  .chip-list { display: flex; flex-direction: column; gap: 12px; }
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .chip svg { flex: none; color: var(--good); }
+
+  /* ---------- final cta ---------- */
+  .final-cta { text-align: center; }
+  .final-cta h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    max-width: 30ch;
+    margin-inline: auto;
+  }
+  .final-cta .hero-ctas { justify-content: center; }
+
+  /* ---------- footer ---------- */
+  footer { border-top: 1px solid var(--border); }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 26px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { text-decoration: none; color: var(--ink-soft); }
+  .footer-links a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="mark">L</span>
+      LACRE
+      <span class="tag">· El Salvador</span>
+    </a>
+    <nav class="nav-links">
+      <a class="textlink" href="#que-hace">Qué hace</a>
+      <a class="textlink" href="/privacidad">Privacidad</a>
+      <a class="btn btn-primary btn-sm" href="mailto:aromero@lacresv.com">Contáctanos</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Extensión para el portal de Hacienda · El Salvador</p>
+        <h1>Simplifica su facturación electrónica</h1>
+        <p class="lede">
+          Una forma más sencilla de gestionar sus DTE, clientes,
+          productos e inventario desde el portal de Facturación
+          Electrónica de Hacienda.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#que-hace">Conocer la extensión</a>
+          <a class="btn btn-ghost" href="mailto:aromero@lacresv.com">Contáctanos</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="torogoz-frame">
+          <img src="assets/torogoz.png" alt="Torogoz, ave nacional de El Salvador y símbolo de LACRE" width="1254" height="1254">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="que-hace">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Qué hace</p>
+        <h2>Todo lo que necesita para gestionar su facturación</h2>
+        <p>Funciones reales de la extensión, disponibles desde el mismo panel lateral del navegador.</p>
+      </div>
+
+      <div class="feature-grid">
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6M9 16h6M9 8h2"/><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/></svg>
+          </div>
+          <h3>Rellenado asistido en el portal</h3>
+          <p>Completa automáticamente los datos del receptor y del documento en admin.factura.gob.sv, cuando usted lo solicita.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17.5" cy="9" r="2.4"/><path d="M15.6 14a5 5 0 0 1 5.4 5"/></svg>
+          </div>
+          <h3>Clientes y Productos</h3>
+          <p>Administre su catálogo de clientes y productos desde un panel local, listo para reutilizar en cada documento.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+          </div>
+          <h3>Historial de documentos</h3>
+          <p>Consulte el Código de Generación, Sello de Recepción y Número de Control de cada DTE emitido.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5-9 4.5-9-4.5Z"/><path d="M3 7.5V16l9 4.5 9-4.5V7.5"/><path d="M12 12v8.5"/></svg>
+          </div>
+          <h3>Inventario</h3>
+          <p>Lleve el control de existencias y movimientos ligados a sus productos.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16.5a4.5 4.5 0 0 1-.5-8.97A5.5 5.5 0 0 1 17.4 9.5 4 4 0 0 1 17 17.5"/><path d="M12 11v7m0 0 2.5-2.5M12 18l-2.5-2.5"/></svg>
+          </div>
+          <h3>Respaldo y restauración</h3>
+          <p>Exporte e importe un respaldo completo de sus datos en cualquier momento, cuando usted lo decida.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9.5h17M9.5 9.5V21"/></svg>
+          </div>
+          <h3>Importación desde Excel</h3>
+          <p>Cargue Clientes y Productos de forma masiva desde una plantilla de Excel.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6 8-6"/></svg>
+          </div>
+          <h3>Envío por correo</h3>
+          <p>Envíe sus documentos por Gmail o Outlook vinculando su propia cuenta de correo.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="v2-band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Actualización normativa</p>
+        <h2>Diseñada para la actualización de Facturación Electrónica</h2>
+        <p>
+          Está preparada para trabajar con la actualización de la Normativa de
+          Cumplimiento de los Documentos Tributarios Electrónicos (DTE),
+          Versión 2.0.
+        </p>
+      </div>
+
+      <p class="v2-desc">
+        LACRE funciona como una herramienta de
+        apoyo dentro del flujo habitual de facturación electrónica,
+        facilitando el ingreso de información y la gestión de los
+        documentos. La extensión:
+      </p>
+
+      <ul class="v2-list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          No utiliza la API del Sistema de Transmisión para emitir DTE.
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          No utiliza certificados de firma electrónica del Ministerio de Hacienda.
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          No modifica los procesos de generación, firma o transmisión de los DTE.
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          No sustituye los mecanismos oficiales establecidos para la transmisión de DTE.
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Facilita el ingreso de información mediante autorrellenado y automatización de tareas operativas.
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Permite organizar y gestionar los documentos generados durante el proceso.
+        </li>
+      </ul>
+
+      <div class="v2-callout">
+        La emisión y transmisión de los DTE continúa realizándose mediante los mecanismos establecidos por el Ministerio de Hacienda.
+      </div>
+
+      <p class="v2-closing">
+        Pensada para acompañar el proceso de facturación electrónica,
+        sin alterar los procesos tributarios de generación y transmisión
+        de los DTE.
+      </p>
+    </div>
+  </section>
+
+  <section class="privacy-band">
+    <div class="wrap privacy-inner">
+      <div>
+        <p class="eyebrow">Privacidad</p>
+        <h2>Sus datos de negocio bajo su control</h2>
+        <p>
+          La información de clientes, productos, historial e inventario
+          se almacena localmente en el navegador. Las funciones que
+          requieren servicios externos, como el envío de correos o la
+          validación de licencia, utilizan únicamente los servicios
+          necesarios para prestar esas funciones.
+        </p>
+        <a class="link-privacidad" href="/privacidad">Leer la Política de Privacidad completa →</a>
+      </div>
+      <div class="chip-list">
+        <div class="chip">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Almacenamiento local de sus datos de trabajo
+        </div>
+        <div class="chip">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Sin publicidad ni rastreadores de analítica
+        </div>
+        <div class="chip">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Sus datos no se venden para fines comerciales
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <p class="eyebrow">Empecemos</p>
+      <h2>¿Listo para simplificar su facturación electrónica?</h2>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#que-hace">Conocer la extensión</a>
+        <a class="btn btn-ghost" href="mailto:aromero@lacresv.com">Contáctanos</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 LACRE</span>
+    <div class="footer-links">
+      <a href="/privacidad">Política de Privacidad</a>
+      <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

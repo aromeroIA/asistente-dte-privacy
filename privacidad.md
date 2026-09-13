@@ -147,4 +147,4 @@ momento.
 ## 10. Contacto
 
 Para preguntas sobre esta política, escriba a:
-**florleonromero0@gmail.com**
+**aromero@lacresv.com**
