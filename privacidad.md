@@ -1,14 +1,152 @@
 ---
-title: Política de Privacidad — Asistente de Facturación DTE
+title: Política de Privacidad — LACRE
 permalink: /privacidad
+layout: null
 ---
+<!DOCTYPE html>
+<html lang="es-SV">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidad — LACRE</title>
+<meta name="description" content="Política de Privacidad de LACRE — Facturación electrónica para El Salvador.">
+<meta name="theme-color" content="#122744">
+<style>
+  :root {
+    --ink: #101826;
+    --ink-soft: #45516A;
+    --paper: #F5F7FB;
+    --surface: #FFFFFF;
+    --border: #E1E6F0;
+    --primary: #122744;
+    --primary-bright: #2A5CAA;
+    --accent: #C48A1E;
+    --accent-soft: #FBF1DD;
+    --shadow: 0 1px 2px rgba(16, 24, 38, 0.04), 0 12px 32px -16px rgba(16, 24, 38, 0.18);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #E8ECF4;
+      --ink-soft: #A9B3C8;
+      --paper: #0B1220;
+      --surface: #121A2C;
+      --border: #26314C;
+      --primary: #DCE6F7;
+      --primary-bright: #6FA1EA;
+      --accent: #E3B65A;
+      --accent-soft: #2A2313;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--primary-bright); }
 
-# Política de Privacidad — Asistente de Facturación DTE
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding-block: 16px; max-width: 1120px; margin: 0 auto;
+    padding-inline: clamp(20px, 5vw, 40px);
+  }
+  .brand {
+    display: flex; align-items: baseline; gap: 8px;
+    font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em;
+    text-decoration: none; color: var(--ink);
+  }
+  .brand .mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--primary); color: var(--paper);
+    font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; flex: none;
+  }
+  .brand .tag { color: var(--ink-soft); font-weight: 500; font-size: 0.85rem; }
+  .back-link { font-size: 0.92rem; color: var(--ink-soft); text-decoration: none; }
+  .back-link:hover { color: var(--ink); }
+
+  .legal-page { padding-block: 48px 80px; }
+  .wrap { max-width: 860px; margin: 0 auto; padding-inline: clamp(20px, 5vw, 40px); }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+    display: block; margin-bottom: 12px;
+  }
+  .legal-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: var(--shadow);
+    padding: clamp(24px, 5vw, 56px);
+  }
+  .legal-card h1 { font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1.2; margin: 0 0 8px; }
+  .legal-card h2 { font-size: 1.25rem; margin: 40px 0 12px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .legal-card h2:first-of-type { border-top: none; padding-top: 0; }
+  .legal-card p, .legal-card li { color: var(--ink-soft); font-size: 0.98rem; }
+  .legal-card strong { color: var(--ink); }
+  .legal-card code {
+    background: var(--accent-soft); color: var(--ink); border-radius: 4px;
+    padding: 0.1em 0.4em; font-family: var(--font-mono); font-size: 0.88em;
+  }
+  .legal-card table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  .legal-card th, .legal-card td {
+    border: 1px solid var(--border); padding: 10px 12px; text-align: left; font-size: 0.92rem;
+  }
+  .legal-card th { color: var(--ink); background: var(--paper); }
+  .legal-card ul, .legal-card ol { padding-left: 1.3em; }
+  .legal-card a { color: var(--primary-bright); }
+
+  footer { border-top: 1px solid var(--border); padding-block: 26px; font-size: 0.85rem; color: var(--ink-soft); }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; flex-wrap: wrap; max-width: 1120px; margin: 0 auto;
+    padding-inline: clamp(20px, 5vw, 40px);
+  }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { text-decoration: none; color: var(--ink-soft); }
+  .footer-links a:hover { color: var(--ink); }
+
+  @media (max-width: 560px) {
+    .legal-card { border-radius: 12px; }
+    .brand .tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="/">
+      <span class="mark">L</span>
+      LACRE
+      <span class="tag">· El Salvador</span>
+    </a>
+    <a class="back-link" href="/">← Volver al inicio</a>
+  </div>
+</header>
+
+<main class="legal-page">
+  <div class="wrap">
+    <span class="eyebrow">LACRE — Facturación electrónica para El Salvador</span>
+    <div class="legal-card" markdown="1">
+
+# Política de Privacidad — LACRE
 
 **Última actualización: 10 de septiembre de 2026**
 
 Esta política describe qué información maneja la extensión de Chrome
-"Asistente de Facturación DTE" y cómo se trata. Esta extensión está
+"LACRE" y cómo se trata. Esta extensión está
 diseñada para uso profesional/comercial en El Salvador, como
 herramienta de apoyo sobre el portal de Facturación Electrónica del
 Ministerio de Hacienda (admin.factura.gob.sv).
@@ -148,3 +286,20 @@ momento.
 
 Para preguntas sobre esta política, escriba a:
 **aromero@lacresv.com**
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 LACRE</span>
+    <div class="footer-links">
+      <a href="/">Inicio</a>
+      <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
