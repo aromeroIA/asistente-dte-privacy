@@ -3,7 +3,6 @@ title: Política de Privacidad — LACRE
 permalink: /privacidad
 layout: null
 ---
-<!DOCTYPE html>
 <html lang="es-SV">
 <head>
 <meta charset="UTF-8">
