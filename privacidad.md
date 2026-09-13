@@ -143,7 +143,7 @@ layout: null
 
 # Política de Privacidad — LACRE
 
-**Última actualización: 10 de septiembre de 2026**
+**Última actualización: 13 de septiembre de 2026**
 
 Esta política describe qué información maneja la extensión de Chrome
 "LACRE" y cómo se trata. Esta extensión está
