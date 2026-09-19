@@ -10,6 +10,12 @@ layout: null
 <title>Política de Privacidad — LACRE</title>
 <meta name="description" content="Política de Privacidad de LACRE — Facturación electrónica para El Salvador.">
 <meta name="theme-color" content="#122744">
+<link rel="canonical" href="https://lacresv.com/privacidad">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <style>
   :root {
     --ink: #101826;
@@ -142,7 +148,7 @@ layout: null
 
 # Política de Privacidad — LACRE
 
-**Última actualización: 13 de septiembre de 2026**
+**Última actualización: 19 de septiembre de 2026**
 
 Esta política describe qué información maneja la extensión de Chrome
 "LACRE" y cómo se trata. Esta extensión está

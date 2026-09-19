@@ -3,9 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LACRE</title>
-<meta name="description" content="LACRE — Facturación electrónica para El Salvador. Gestione DTE, clientes, productos e inventario desde el portal de Facturación Electrónica de Hacienda.">
+<title>LACRE — Extensión de Chrome para facturación electrónica DTE</title>
+<meta name="description" content="LACRE es una extensión de Chrome para facturación electrónica en El Salvador. Gestione DTE, clientes, productos e inventario desde el portal de Hacienda.">
 <meta name="theme-color" content="#122744">
+<link rel="canonical" href="https://lacresv.com/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:site_name" content="LACRE">
+<meta property="og:locale" content="es_SV">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LACRE — Extensión de Chrome para facturación electrónica DTE">
+<meta property="og:description" content="LACRE es una extensión de Chrome para facturación electrónica en El Salvador. Gestione DTE, clientes, productos e inventario desde el portal de Hacienda.">
+<meta property="og:url" content="https://lacresv.com/">
+<meta property="og:image" content="https://lacresv.com/assets/torogoz-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="Torogoz, ave nacional de El Salvador y símbolo de LACRE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LACRE — Extensión de Chrome para facturación electrónica DTE">
+<meta name="twitter:description" content="LACRE es una extensión de Chrome para facturación electrónica en El Salvador. Gestione DTE, clientes, productos e inventario desde el portal de Hacienda.">
+<meta name="twitter:image" content="https://lacresv.com/assets/torogoz-social.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://lacresv.com/#website",
+      "url": "https://lacresv.com/",
+      "name": "LACRE",
+      "description": "LACRE es una extensión de Chrome para facturación electrónica en El Salvador. Gestione DTE, clientes, productos e inventario desde el portal de Hacienda.",
+      "inLanguage": "es-SV"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://lacresv.com/#software",
+      "name": "LACRE",
+      "url": "https://lacresv.com/",
+      "description": "LACRE es una extensión de Chrome para facturación electrónica en El Salvador. Se utiliza junto al portal de Facturación Electrónica del Ministerio de Hacienda. Es una herramienta independiente y no es un producto oficial del Ministerio de Hacienda.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Google Chrome",
+      "browserRequirements": "Requiere Google Chrome",
+      "inLanguage": "es-SV",
+      "image": "https://lacresv.com/assets/torogoz-social.png",
+      "installUrl": "https://chromewebstore.google.com/detail/lacre/npgfagljbcemdihigcihmjnohonejcgd",
+      "isPartOf": {
+        "@id": "https://lacresv.com/#website"
+      },
+      "featureList": [
+        "Rellenado asistido en el portal",
+        "Clientes y Productos",
+        "Historial de documentos",
+        "Inventario",
+        "Respaldo y restauración",
+        "Importación desde Excel",
+        "Envío por correo"
+      ]
+    }
+  ]
+}
+</script>
 <style>
   :root {
     --ink: #101826;
@@ -114,6 +174,7 @@
     text-decoration: none;
   }
   .nav-links a.textlink:hover { color: var(--ink); }
+  @media (max-width: 480px) { .nav-links a.textlink[href="#planes"] { display: none; } }
 
   .btn {
     display: inline-flex;
@@ -232,6 +293,59 @@
   }
   .feature-card h3 { font-size: 1.03rem; font-weight: 700; margin-bottom: 6px; }
   .feature-card p { color: var(--ink-soft); font-size: 0.92rem; }
+
+  .hero .aviso {
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    max-width: 54ch;
+    margin-top: 16px;
+  }
+
+  /* ---------- planes ---------- */
+  #planes { scroll-margin-top: 84px; }
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .plan-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .plan-card--destacado { border-color: var(--accent); }
+  .plan-card h3 {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .plan-precio {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-top: 6px;
+  }
+  .plan-nota { color: var(--ink-soft); font-size: 0.92rem; }
+  .plan-datos {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 12px 0 0;
+    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 6px;
+    font-size: 0.95rem;
+  }
+  .plan-texto { color: var(--ink); font-size: 1rem; margin-top: 6px; }
+  .plan-contacto { color: var(--ink-soft); font-size: 0.92rem; margin-top: 22px; }
+  .plan-contacto a { color: var(--primary-bright); font-weight: 600; }
 
   /* ---------- versión 2.0 ---------- */
   .v2-band {
@@ -358,6 +472,7 @@
     </a>
     <nav class="nav-links">
       <a class="textlink" href="#que-hace">Qué hace</a>
+      <a class="textlink" href="#planes">Planes</a>
       <a class="textlink" href="/privacidad">Privacidad</a>
       <a class="btn btn-primary btn-sm" href="mailto:aromero@lacresv.com">Contáctanos</a>
     </nav>
@@ -369,8 +484,8 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Extensión para el portal de Hacienda · El Salvador</p>
-        <h1>Simplifica su facturación electrónica</h1>
+        <p class="eyebrow">Extensión de Chrome · El Salvador</p>
+        <h1>LACRE: extensión de Chrome para facturación electrónica en El Salvador</h1>
         <p class="lede">
           Una forma más sencilla de gestionar sus DTE, clientes,
           productos e inventario desde el portal de Facturación
@@ -380,6 +495,7 @@
           <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/lacre/npgfagljbcemdihigcihmjnohonejcgd" target="_blank" rel="noopener">Instalar LACRE</a>
           <a class="btn btn-ghost" href="mailto:aromero@lacresv.com">Contáctanos</a>
         </div>
+        <p class="aviso">LACRE es una herramienta independiente y no es un producto oficial del Ministerio de Hacienda.</p>
       </div>
 
       <div class="hero-visual">
@@ -515,6 +631,42 @@
         sin alterar los procesos tributarios de generación y transmisión
         de los DTE.
       </p>
+    </div>
+  </section>
+
+  <section id="planes">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Planes</p>
+        <h2>Planes de LACRE</h2>
+        <p>Planes de licencia de la extensión.</p>
+      </div>
+
+      <div class="plan-grid">
+
+        <article class="plan-card plan-card--destacado">
+          <h3>LACRE PREMIUM</h3>
+          <p class="plan-precio">US$50</p>
+          <p class="plan-nota">Pago único</p>
+          <ul class="plan-datos">
+            <li>1 empresa</li>
+            <li>Hasta 2 dispositivos</li>
+          </ul>
+        </article>
+
+        <article class="plan-card">
+          <h3>LACRE MULTIEMPRESA</h3>
+          <p class="plan-texto">Empresas y dispositivos según contratación</p>
+        </article>
+
+        <article class="plan-card">
+          <h3>LACRE DESPACHO</h3>
+          <p class="plan-texto">Mayor capacidad según contratación</p>
+        </article>
+
+      </div>
+
+      <p class="plan-contacto">Para consultas sobre los planes, escríbanos a <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>.</p>
     </div>
   </section>
 
