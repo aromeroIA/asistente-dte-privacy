@@ -148,13 +148,15 @@ layout: null
 
 # Política de Privacidad — LACRE
 
-**Última actualización: 19 de septiembre de 2026**
+**Última actualización: 20 de septiembre de 2026**
 
 Esta política describe qué información maneja la extensión de Chrome
 "LACRE" y cómo se trata. Esta extensión está
 diseñada para uso profesional/comercial en El Salvador, como
 herramienta de apoyo sobre el portal de Facturación Electrónica del
-Ministerio de Hacienda (admin.factura.gob.sv).
+Ministerio de Hacienda (admin.factura.gob.sv). También describe los datos que
+se reciben a través de los formularios de contacto de este sitio web
+(lacresv.com); ver la sección 6.
 
 ## 1. Resumen
 
@@ -170,6 +172,11 @@ de Google/Microsoft porque usted vincula su propia cuenta de correo;
 y (b) el sistema de licencias, que envía una huella criptográfica del
 NIT de su empresa (nunca el NIT en sí) para verificar que su licencia
 esté vigente.
+
+Los formularios de contacto de este sitio web son independientes de la
+extensión: los datos que usted envía por ellos se tratan según la
+sección 6, y los datos que usted introduce dentro de la extensión
+siguen almacenándose únicamente en su navegador.
 
 ## 2. Qué información se almacena localmente
 
@@ -249,7 +256,48 @@ Este servidor de licenciamiento no tiene ninguna relación con el
 servidor del Ministerio de Hacienda ni con Google/Microsoft — es
 exclusivamente para validar el uso autorizado de la extensión.
 
-## 6. Portal de Hacienda (admin.factura.gob.sv)
+## 6. Formularios del sitio web (lacresv.com)
+
+Este sitio ofrece formularios para solicitar LACRE Premium, solicitar
+una cotización de licencia personalizada o hacer una consulta general.
+Esta sección aplica únicamente a los datos enviados mediante esos
+formularios; no aplica a los datos que usted introduce dentro de la
+extensión (secciones 2 a 5).
+
+**Datos que se reciben.** Los que usted escribe en el formulario:
+nombre, correo electrónico, teléfono o WhatsApp (opcional), nombre de
+su empresa o negocio (opcional, solo en la solicitud de cotización),
+cantidad aproximada de empresas y de dispositivos y modalidad
+solicitada (solo en la solicitud de cotización), y el mensaje o
+comentarios. Si usted llega a este sitio desde la extensión, se
+registra únicamente que la solicitud proviene de ella; no se envía
+ningún dato de la extensión, de su empresa ni de su licencia.
+
+**Lo que no se solicita.** Los formularios no piden NIT ni códigos de
+licencia, y le pedimos que no los incluya en el mensaje.
+
+**Finalidad.** Responder su solicitud o consulta, preparar
+cotizaciones y gestionar el proceso de adquisición y licenciamiento de
+LACRE.
+
+**Almacenamiento.** Las solicitudes se reciben mediante un servicio
+propio de LACRE que funciona en Cloudflare y se guardan en una base de
+datos en Cloudflare. El servicio no guarda en esa base de datos la
+dirección IP ni el navegador (agente de usuario) desde el que se envía
+la solicitud. Para evitar abusos, limita la cantidad de solicitudes por
+dirección IP usando únicamente memoria temporal, sin almacenarla.
+
+**Conservación.** Las solicitudes recibidas por los formularios web se
+conservan durante 12 meses desde su recepción y después se eliminan
+mediante un proceso automático. Este plazo se refiere a las solicitudes
+recibidas por los formularios web. Puede pedir la eliminación anticipada
+de su solicitud escribiendo a **aromero@lacresv.com**.
+
+**Uso de los datos.** Los datos de estos formularios no se venden ni se
+usan con fines publicitarios, y este sitio no utiliza rastreadores de
+analítica ni publicidad.
+
+## 7. Portal de Hacienda (admin.factura.gob.sv)
 
 La extensión interactúa con la página del portal de Facturación
 Electrónica para leer y, cuando usted lo solicita, rellenar
@@ -258,7 +306,7 @@ interacción ocurre únicamente dentro de esa página oficial del
 Ministerio de Hacienda — la extensión no envía esos datos a ningún
 otro sitio.
 
-## 7. Qué NO hace esta extensión
+## 8. Qué NO hace esta extensión
 
 - No vende ni comparte su información con terceros con fines
   publicitarios o comerciales.
@@ -269,7 +317,7 @@ otro sitio.
 - No recopila su ubicación, historial de navegación general, ni
   ningún dato biométrico.
 
-## 8. Permisos del navegador que solicita la extensión, y por qué
+## 9. Permisos del navegador que solicita la extensión, y por qué
 
 | Permiso | Para qué se usa |
 |---|---|
@@ -279,7 +327,7 @@ otro sitio.
 | `sidePanel` | Mostrar el panel de la extensión en la barra lateral de Chrome. |
 | `identity` | El flujo de vinculación de cuenta de correo (sección 4). |
 
-## 9. Cómo eliminar su información
+## 10. Cómo eliminar su información
 
 Toda su información se elimina al desinstalar la extensión (Chrome
 borra automáticamente los datos de almacenamiento local de una
@@ -287,7 +335,7 @@ extensión desinstalada). También puede eliminar registros
 individuales desde la propia interfaz de la extensión en cualquier
 momento.
 
-## 10. Contacto
+## 11. Contacto
 
 Para preguntas sobre esta política, escriba a:
 **aromero@lacresv.com**
@@ -301,6 +349,8 @@ Para preguntas sobre esta política, escriba a:
     <span>© 2026 LACRE</span>
     <div class="footer-links">
       <a href="/">Inicio</a>
+      <a href="/terminos">Términos y Condiciones</a>
+      <a href="/reembolso">Política de Reembolso</a>
       <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>
     </div>
   </div>

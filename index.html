@@ -61,6 +61,110 @@
         "Respaldo y restauración",
         "Importación desde Excel",
         "Envío por correo"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "LACRE Premium",
+          "url": "https://lacresv.com/#planes",
+          "price": "50",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "description": "Pago único. Licencia permanente. 1 empresa y hasta 2 dispositivos de la misma empresa. 1 reemplazo de dispositivo por año."
+        },
+        {
+          "@type": "Offer",
+          "name": "Licencia personalizada",
+          "url": "https://lacresv.com/#contacto",
+          "availability": "https://schema.org/InStock",
+          "description": "Precio bajo cotización. Varias empresas y dispositivos, modalidad flexible o controlada y reemplazos configurables según las necesidades del cliente."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://lacresv.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es LACRE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LACRE es una extensión de Chrome para facturación electrónica en El Salvador. Se usa junto al portal de Facturación Electrónica de Hacienda y ayuda a rellenar datos, administrar clientes y productos, consultar el historial de documentos, llevar inventario, respaldar y restaurar su información, importar desde Excel y enviar documentos por correo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta LACRE Premium?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LACRE Premium cuesta US$50, pago único y precio final."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La licencia Premium es permanente?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Premium es de pago único: no hay cuotas ni renovaciones por la licencia y esta no tiene fecha de vencimiento. Aplican los Términos y Condiciones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En cuántos dispositivos puedo usar Premium?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En hasta 2 dispositivos, siempre de la misma empresa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo funciona el reemplazo de dispositivo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Premium incluye 1 reemplazo de dispositivo por año. Sirve para sustituir uno de sus dispositivos autorizados por otro, por ejemplo si cambia o pierde una computadora. Si no lo utiliza, no se acumula para el año siguiente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es una licencia personalizada?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es una licencia configurada según sus necesidades: número de empresas, número de dispositivos, reemplazos y modalidad. Se cotiza a la medida."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la diferencia entre modalidad flexible y controlada?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Flexible: los dispositivos autorizados pueden trabajar con las empresas autorizadas según los límites contratados. Controlada: la configuración determina qué empresas puede utilizar cada dispositivo; por ejemplo, un despacho decide qué empresas atiende cada equipo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto dura la prueba gratuita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La prueba gratuita dura 1 día o 5 DTE, lo que ocurra primero. Es una prueba por empresa: reinstalar la extensión o cambiar de dispositivo no la reinicia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo adquirir una licencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Envíe su solicitud en la sección Contáctanos. Le indicaremos cómo realizar el pago. Cuando se confirme el pago, le entregamos su código de licencia y usted activa LACRE en la extensión. No pedimos su NIT en la solicitud: la licencia se vincula a su empresa al activarla."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿LACRE es un sistema oficial de Hacienda?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. LACRE es una herramienta independiente y no es un producto oficial del Ministerio de Hacienda. Se utiliza junto al portal de Facturación Electrónica de Hacienda."
+          }
+        }
       ]
     }
   ]
@@ -78,6 +182,8 @@
     --accent: #C48A1E;
     --accent-soft: #FBF1DD;
     --good: #1F7A56;
+    --danger: #B3261E;
+    --campo-borde: #6B7794;
     --shadow: 0 1px 2px rgba(16, 24, 38, 0.04), 0 12px 32px -16px rgba(16, 24, 38, 0.18);
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
@@ -95,6 +201,8 @@
       --accent: #E3B65A;
       --accent-soft: #2A2313;
       --good: #4FB98B;
+      --danger: #FF8A80;
+      --campo-borde: #8A96B4;
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 40px -20px rgba(0, 0, 0, 0.6);
     }
   }
@@ -174,7 +282,18 @@
     text-decoration: none;
   }
   .nav-links a.textlink:hover { color: var(--ink); }
-  @media (max-width: 480px) { .nav-links a.textlink[href="#planes"] { display: none; } }
+  @media (max-width: 480px) {
+    .nav-links a.textlink[href="#planes"],
+    .nav-links a.textlink[href="#preguntas"] { display: none; }
+  }
+  /* 320px: el menú original desbordaba (~36px); se compacta sin cambiar su contenido. */
+  @media (max-width: 380px) {
+    .nav { gap: 8px; }
+    .brand { gap: 6px; }
+    .nav-links { gap: 10px; }
+    .nav-links a.textlink { font-size: 0.85rem; }
+    .nav-links .btn-sm { padding: 8px 10px; font-size: 0.8rem; }
+  }
 
   .btn {
     display: inline-flex;
@@ -459,6 +578,112 @@
   .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
   .footer-links a { text-decoration: none; color: var(--ink-soft); }
   .footer-links a:hover { color: var(--ink); }
+
+  /* ---------- movimiento reducido ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+
+  #preguntas, #contacto { scroll-margin-top: 84px; }
+  .solo-lectores {
+    position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- planes: ajustes de tarjetas ---------- */
+  .plan-aclaracion { color: var(--ink-soft); font-size: 0.88rem; margin-top: 8px; }
+  .plan-cta { margin-top: auto; align-self: stretch; justify-content: center; min-height: 44px; }
+  .plan-card .plan-aclaracion + .plan-cta { margin-top: 18px; }
+  .plan-card .plan-datos + .plan-cta { margin-top: 18px; }
+  .modalidades {
+    margin-top: 28px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 24px; max-width: 72ch;
+  }
+  .modalidades h3 { font-size: 1rem; font-weight: 700; }
+  .modalidades dl { margin: 12px 0 0; display: grid; gap: 10px; }
+  .modalidades dt { font-weight: 700; }
+  .modalidades dd { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+  .prueba-gratuita {
+    margin-top: 18px; border-left: 3px solid var(--accent); background: var(--accent-soft);
+    border-radius: 0 10px 10px 0; padding: 16px 20px; max-width: 72ch;
+  }
+  .prueba-gratuita strong { display: block; margin-bottom: 4px; }
+
+  /* ---------- preguntas frecuentes ---------- */
+  .faq { display: grid; gap: 10px; max-width: 820px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+  .faq-item summary {
+    list-style: none; cursor: pointer; position: relative; display: flex; align-items: center;
+    min-height: 48px; padding: 12px 48px 12px 18px; font-weight: 600;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; position: absolute; right: 18px; font-size: 1.3rem; font-weight: 400; color: var(--accent); }
+  .faq-item[open] summary::after { content: "\2013"; }
+  .faq-item .faq-resp { padding: 0 18px 16px; color: var(--ink-soft); font-size: 0.96rem; }
+  .faq-resp a { color: var(--primary-bright); font-weight: 600; }
+
+  /* ---------- contacto y formulario ---------- */
+  .contacto-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  @media (min-width: 900px) { .contacto-grid { grid-template-columns: 0.8fr 1.2fr; } }
+  .canales { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; }
+  .canales a { display: inline-flex; align-items: center; min-height: 44px; color: var(--primary-bright); font-weight: 600; }
+  .contacto-nota { color: var(--ink-soft); font-size: 0.9rem; margin-top: 12px; max-width: 46ch; }
+  .contacto-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: clamp(20px, 4vw, 32px); box-shadow: var(--shadow);
+  }
+  .aviso-noscript { color: var(--ink); }
+  .aviso-noscript a { color: var(--primary-bright); font-weight: 600; }
+
+  .tipos { border: 0; padding: 0; margin: 0 0 20px; min-width: 0; }
+  .tipos legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
+  .tipos-opciones { display: grid; gap: 8px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .tipos-opciones { grid-template-columns: repeat(3, 1fr); } }
+  .tipo-op { position: relative; display: block; }
+  .tipo-op input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+  .tipo-op span {
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    min-height: 48px; padding: 8px 12px; border: 1px solid var(--campo-borde); border-radius: 9px;
+    background: var(--paper); color: var(--ink); font-weight: 600; font-size: 0.9rem;
+  }
+  .tipo-op input:checked + span { background: var(--primary); border-color: var(--primary); color: var(--paper); }
+  .tipo-op input:focus-visible + span { outline: 2px solid var(--primary-bright); outline-offset: 2px; }
+
+  .campo { display: grid; gap: 6px; margin: 0 0 16px; min-width: 0; }
+  fieldset.campo { border: 0; padding: 0; }
+  .campo > label, .campo > legend { font-weight: 600; font-size: 0.95rem; padding: 0; }
+  .campo .req { font-weight: 400; color: var(--ink-soft); font-size: 0.85rem; }
+  .campo input[type="text"], .campo input[type="email"], .campo input[type="tel"], .campo textarea {
+    font: inherit; font-size: 1rem; min-height: 44px; width: 100%; padding: 10px 12px;
+    border: 1px solid var(--campo-borde); border-radius: 9px; background: var(--paper); color: var(--ink);
+  }
+  .campo textarea { min-height: 120px; resize: vertical; }
+  .campo [aria-invalid="true"] { border-color: var(--danger); box-shadow: 0 0 0 1px var(--danger); }
+  .campo-error { color: var(--danger); font-size: 0.9rem; font-weight: 600; }
+  .campo-ayuda { color: var(--ink-soft); font-size: 0.85rem; }
+  .campo-fila { display: grid; gap: 0 16px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .campo-fila { grid-template-columns: 1fr 1fr; } }
+  .radio-linea { display: flex; align-items: center; gap: 10px; min-height: 44px; cursor: pointer; }
+  .radio-linea input { width: 22px; height: 22px; margin: 0; flex: none; accent-color: var(--primary-bright); }
+
+  .resumen-errores {
+    border: 1px solid var(--danger); border-left-width: 4px; border-radius: 10px; margin-bottom: 18px;
+    padding: 14px 16px; background: color-mix(in srgb, var(--danger) 8%, var(--surface));
+  }
+  .resumen-errores h3 { font-size: 1rem; color: var(--danger); margin-bottom: 6px; }
+  .resumen-errores ul { margin: 0; padding-left: 1.2em; }
+  .resumen-errores a { color: var(--ink); text-underline-offset: 3px; }
+  .resumen-errores:focus { outline: 2px solid var(--primary-bright); outline-offset: 2px; }
+  .aviso-privacidad { color: var(--ink-soft); font-size: 0.88rem; margin: 4px 0 18px; }
+  .aviso-privacidad a { color: var(--primary-bright); font-weight: 600; }
+  .btn-form { min-height: 48px; width: 100%; justify-content: center; font-size: 1rem; }
+  @media (min-width: 560px) { .btn-form { width: auto; min-width: 220px; } }
+  .btn:disabled { opacity: 0.7; cursor: progress; }
+  .exito h3 { font-size: 1.3rem; color: var(--good); margin-bottom: 8px; }
+  .exito h3:focus { outline: 2px solid var(--primary-bright); outline-offset: 4px; }
+  .exito p { margin-bottom: 18px; }
+  .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 </style>
 </head>
 <body>
@@ -473,8 +698,9 @@
     <nav class="nav-links">
       <a class="textlink" href="#que-hace">Qué hace</a>
       <a class="textlink" href="#planes">Planes</a>
+      <a class="textlink" href="#preguntas">Preguntas</a>
       <a class="textlink" href="/privacidad">Privacidad</a>
-      <a class="btn btn-primary btn-sm" href="mailto:aromero@lacresv.com">Contáctanos</a>
+      <a class="btn btn-primary btn-sm" href="#contacto">Contáctanos</a>
     </nav>
   </div>
 </header>
@@ -493,7 +719,7 @@
         </p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/lacre/npgfagljbcemdihigcihmjnohonejcgd" target="_blank" rel="noopener">Instalar LACRE</a>
-          <a class="btn btn-ghost" href="mailto:aromero@lacresv.com">Contáctanos</a>
+          <a class="btn btn-ghost" href="#contacto">Contáctanos</a>
         </div>
         <p class="aviso">LACRE es una herramienta independiente y no es un producto oficial del Ministerio de Hacienda.</p>
       </div>
@@ -639,7 +865,7 @@
       <div class="section-head">
         <p class="eyebrow">Planes</p>
         <h2>Planes de LACRE</h2>
-        <p>Planes de licencia de la extensión.</p>
+        <p>Un solo LACRE, dos formas de adquirirlo.</p>
       </div>
 
       <div class="plan-grid">
@@ -647,26 +873,109 @@
         <article class="plan-card plan-card--destacado">
           <h3>LACRE PREMIUM</h3>
           <p class="plan-precio">US$50</p>
-          <p class="plan-nota">Pago único</p>
+          <p class="plan-nota">Pago único · Licencia permanente</p>
+          <p class="plan-nota">Precio final</p>
           <ul class="plan-datos">
             <li>1 empresa</li>
-            <li>Hasta 2 dispositivos</li>
+            <li>Hasta 2 dispositivos de la misma empresa</li>
+            <li>1 reemplazo de dispositivo por año</li>
           </ul>
+          <p class="plan-aclaracion">El reemplazo sustituye un dispositivo autorizado por otro, por ejemplo si cambia de computadora. Los reemplazos no utilizados no se acumulan.</p>
+          <a class="btn btn-primary plan-cta" href="#contacto" data-solicitud="premium">Solicitar LACRE Premium</a>
         </article>
 
         <article class="plan-card">
-          <h3>LACRE MULTIEMPRESA</h3>
-          <p class="plan-texto">Empresas y dispositivos según contratación</p>
-        </article>
-
-        <article class="plan-card">
-          <h3>LACRE DESPACHO</h3>
-          <p class="plan-texto">Mayor capacidad según contratación</p>
+          <h3>LICENCIA PERSONALIZADA</h3>
+          <p class="plan-precio">Cotización</p>
+          <p class="plan-nota">Precio según configuración</p>
+          <ul class="plan-datos">
+            <li>Varias empresas</li>
+            <li>Varios dispositivos</li>
+            <li>Modalidad flexible o controlada</li>
+            <li>Reemplazos configurables</li>
+          </ul>
+          <a class="btn btn-ghost plan-cta" href="#contacto" data-solicitud="personalizada">Solicitar cotización</a>
         </article>
 
       </div>
 
-      <p class="plan-contacto">Para consultas sobre los planes, escríbanos a <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>.</p>
+      <div class="modalidades">
+        <h3>Modalidades de la licencia personalizada</h3>
+        <dl>
+          <dt>Flexible</dt>
+          <dd>Cualquier dispositivo autorizado puede trabajar con cualquiera de las empresas incluidas en la licencia, respetando los límites contratados.</dd>
+          <dt>Controlada</dt>
+          <dd>Se configura qué empresas puede utilizar cada dispositivo autorizado.</dd>
+        </dl>
+      </div>
+
+      <div class="prueba-gratuita">
+        <strong>Prueba gratuita</strong>
+        <p>Pruebe LACRE antes de comprar: 1 día o 5 DTE, lo que ocurra primero. La prueba es una por empresa; reinstalar la extensión o cambiar de dispositivo no la reinicia.</p>
+      </div>
+
+      <p class="plan-contacto">¿Dudas? Consulte las <a href="#preguntas">preguntas frecuentes</a> o <a href="#contacto">escríbanos</a>.</p>
+    </div>
+  </section>
+
+  <section id="preguntas">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Lo que suelen preguntarnos</h2>
+      </div>
+
+      <div class="faq">
+        <details class="faq-item">
+          <summary>¿Qué es LACRE?</summary>
+          <p class="faq-resp">LACRE es una extensión de Chrome para facturación electrónica en El Salvador. Se usa junto al portal de Facturación Electrónica de Hacienda y ayuda a rellenar datos, administrar clientes y productos, consultar el historial de documentos, llevar inventario, respaldar y restaurar su información, importar desde Excel y enviar documentos por correo.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿Cuánto cuesta LACRE Premium?</summary>
+          <p class="faq-resp">LACRE Premium cuesta US$50, pago único y precio final.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿La licencia Premium es permanente?</summary>
+          <p class="faq-resp">Sí. Premium es de pago único: no hay cuotas ni renovaciones por la licencia y esta no tiene fecha de vencimiento. Aplican los <a href="/terminos">Términos y Condiciones</a>.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿En cuántos dispositivos puedo usar Premium?</summary>
+          <p class="faq-resp">En hasta 2 dispositivos, siempre de la misma empresa.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿Cómo funciona el reemplazo de dispositivo?</summary>
+          <p class="faq-resp">Premium incluye 1 reemplazo de dispositivo por año. Sirve para sustituir uno de sus dispositivos autorizados por otro, por ejemplo si cambia o pierde una computadora. Si no lo utiliza, no se acumula para el año siguiente.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿Qué es una licencia personalizada?</summary>
+          <p class="faq-resp">Es una licencia configurada según sus necesidades: número de empresas, número de dispositivos, reemplazos y modalidad. Se cotiza a la medida.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿Cuál es la diferencia entre modalidad flexible y controlada?</summary>
+          <p class="faq-resp">Flexible: los dispositivos autorizados pueden trabajar con las empresas autorizadas según los límites contratados. Controlada: la configuración determina qué empresas puede utilizar cada dispositivo; por ejemplo, un despacho decide qué empresas atiende cada equipo.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿Cuánto dura la prueba gratuita?</summary>
+          <p class="faq-resp">La prueba gratuita dura 1 día o 5 DTE, lo que ocurra primero. Es una prueba por empresa: reinstalar la extensión o cambiar de dispositivo no la reinicia.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿Cómo puedo adquirir una licencia?</summary>
+          <p class="faq-resp">Envíe su solicitud en la sección <a href="#contacto">Contáctanos</a>. Le indicaremos cómo realizar el pago. Cuando se confirme el pago, le entregamos su código de licencia y usted activa LACRE en la extensión. No pedimos su NIT en la solicitud: la licencia se vincula a su empresa al activarla.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>¿LACRE es un sistema oficial de Hacienda?</summary>
+          <p class="faq-resp">No. LACRE es una herramienta independiente y no es un producto oficial del Ministerio de Hacienda. Se utiliza junto al portal de Facturación Electrónica de Hacienda.</p>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -707,11 +1016,122 @@
       <h2>¿Listo para simplificar su facturación electrónica?</h2>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/lacre/npgfagljbcemdihigcihmjnohonejcgd" target="_blank" rel="noopener">Instalar LACRE</a>
-        <a class="btn btn-ghost" href="mailto:aromero@lacresv.com">Contáctanos</a>
+        <a class="btn btn-ghost" href="#contacto">Contáctanos</a>
       </div>
     </div>
   </section>
 
+  <section id="contacto">
+    <div class="wrap contacto-grid">
+      <div>
+        <div class="section-head">
+          <p class="eyebrow">Contacto</p>
+          <h2>Contáctanos</h2>
+          <p>¿Quiere adquirir LACRE, solicitar una cotización o hacer una consulta? Escríbanos y nos pondremos en contacto.</p>
+        </div>
+        <ul class="canales">
+          <li><a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a></li>
+          <li data-whatsapp hidden><a rel="noopener" target="_blank">Escribir por WhatsApp</a></li>
+        </ul>
+        <p class="contacto-nota">No solicitamos su NIT para atender su solicitud. La licencia se vincula a su empresa cuando usted la activa en la extensión.</p>
+      </div>
+
+      <div class="contacto-card">
+        <noscript>
+          <p class="aviso-noscript">Para enviar una solicitud desde esta página necesita activar JavaScript. También puede escribirnos a <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>.</p>
+        </noscript>
+
+        <div id="solicitud" hidden>
+          <div id="form-exito" class="exito" hidden>
+            <h3 id="exito-titulo" tabindex="-1"></h3>
+            <p id="exito-texto"></p>
+            <button type="button" class="btn btn-ghost" id="nueva-solicitud">Enviar otra solicitud</button>
+          </div>
+
+          <form id="form-solicitud" novalidate aria-labelledby="form-titulo">
+            <h3 id="form-titulo" class="solo-lectores">Formulario de contacto</h3>
+
+            <div id="form-errores" class="resumen-errores" role="alert" tabindex="-1" hidden>
+              <h3>Revise los siguientes puntos</h3>
+              <ul id="form-errores-lista"></ul>
+            </div>
+            <p id="form-estado" class="solo-lectores" role="status" aria-live="polite"></p>
+
+            <fieldset class="tipos">
+              <legend>¿Qué necesita?</legend>
+              <div class="tipos-opciones">
+                <label class="tipo-op"><input type="radio" name="tipo" id="tipo-premium" value="premium"><span>Solicitar LACRE Premium</span></label>
+                <label class="tipo-op"><input type="radio" name="tipo" id="tipo-personalizada" value="personalizada"><span>Solicitar cotización</span></label>
+                <label class="tipo-op"><input type="radio" name="tipo" id="tipo-consulta" value="consulta" checked><span>Consulta general</span></label>
+              </div>
+            </fieldset>
+
+            <div class="campo">
+              <label for="f-nombre">Nombre <span class="req">(obligatorio)</span></label>
+              <input type="text" id="f-nombre" name="nombre" autocomplete="name" maxlength="100" aria-required="true">
+              <p class="campo-error" id="err-nombre" hidden></p>
+            </div>
+
+            <div class="campo" data-solo="personalizada" hidden>
+              <label for="f-empresa">Empresa o negocio <span class="req">(opcional)</span></label>
+              <input type="text" id="f-empresa" name="empresa" autocomplete="organization" maxlength="120" disabled>
+              <p class="campo-error" id="err-empresa" hidden></p>
+            </div>
+
+            <div class="campo">
+              <label for="f-correo">Correo electrónico <span class="req">(obligatorio)</span></label>
+              <input type="email" id="f-correo" name="correo" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254" aria-required="true">
+              <p class="campo-error" id="err-correo" hidden></p>
+            </div>
+
+            <div class="campo">
+              <label for="f-telefono">Teléfono o WhatsApp <span class="req">(opcional)</span></label>
+              <input type="tel" id="f-telefono" name="telefono" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="ayuda-telefono" data-describedby-base="ayuda-telefono">
+              <p class="campo-ayuda" id="ayuda-telefono">Si prefiere que le contactemos por WhatsApp, incluya el código de país.</p>
+              <p class="campo-error" id="err-telefono" hidden></p>
+            </div>
+
+            <div class="campo-fila" data-solo="personalizada" hidden>
+              <div class="campo">
+                <label for="f-empresas">Cantidad aproximada de empresas <span class="req">(obligatorio)</span></label>
+                <input type="text" id="f-empresas" name="empresas" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-required="true" disabled>
+                <p class="campo-error" id="err-empresas" hidden></p>
+              </div>
+              <div class="campo">
+                <label for="f-dispositivos">Cantidad aproximada de dispositivos <span class="req">(obligatorio)</span></label>
+                <input type="text" id="f-dispositivos" name="dispositivos" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-required="true" disabled>
+                <p class="campo-error" id="err-dispositivos" hidden></p>
+              </div>
+            </div>
+
+            <fieldset class="campo" id="grupo-modalidad" data-solo="personalizada" hidden>
+              <legend>Modalidad <span class="req">(obligatorio)</span></legend>
+              <label class="radio-linea"><input type="radio" name="modalidad" id="mod-flexible" value="flexible" disabled> Flexible</label>
+              <label class="radio-linea"><input type="radio" name="modalidad" id="mod-controlada" value="controlada" disabled> Controlada</label>
+              <label class="radio-linea"><input type="radio" name="modalidad" id="mod-no_seguro" value="no_seguro" checked disabled> No estoy seguro</label>
+              <p class="campo-error" id="err-modalidad" hidden></p>
+            </fieldset>
+
+            <div class="campo">
+              <label for="f-mensaje"><span id="lbl-mensaje-texto">Mensaje</span> <span class="req" id="lbl-mensaje-req">(obligatorio)</span></label>
+              <textarea id="f-mensaje" name="mensaje" rows="4" maxlength="1000" aria-describedby="ayuda-mensaje" data-describedby-base="ayuda-mensaje" aria-required="true"></textarea>
+              <p class="campo-ayuda" id="ayuda-mensaje">Por favor, no incluya su NIT ni códigos de licencia.</p>
+              <p class="campo-error" id="err-mensaje" hidden></p>
+            </div>
+
+            <div class="hp" aria-hidden="true">
+              <label for="f-verificacion">Dejar este campo en blanco</label>
+              <input type="text" id="f-verificacion" name="verificacion" tabindex="-1" autocomplete="off">
+            </div>
+
+            <p class="aviso-privacidad">Usaremos estos datos únicamente para responder su solicitud. Consulte la <a href="/privacidad">Política de Privacidad</a>.</p>
+
+            <button type="submit" class="btn btn-primary btn-form" id="btn-enviar">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -719,10 +1139,15 @@
     <span>© 2026 LACRE</span>
     <div class="footer-links">
       <a href="/privacidad">Política de Privacidad</a>
+      <a href="/terminos">Términos y Condiciones</a>
+      <a href="/reembolso">Política de Reembolso</a>
       <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>
+      <a data-whatsapp hidden rel="noopener" target="_blank">WhatsApp</a>
     </div>
   </div>
 </footer>
+
+<script src="/assets/lacre-web.js" defer></script>
 
 </body>
 </html>
