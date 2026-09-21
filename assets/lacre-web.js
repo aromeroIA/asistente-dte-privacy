@@ -19,10 +19,10 @@
   // Cuando exista, escribir solo dígitos con código de país (sin "+", espacios ni guiones).
   var WHATSAPP_NUMERO = "";
 
-  // Enlace de pago Wompi para LACRE Premium (US$50, pago único). DEBE PERMANECER VACÍO mientras
-  // no exista el enlace real creado en la cuenta Wompi: vacío => no se muestra ningún botón de pago.
+  // Enlace de pago Wompi para LACRE Premium (US$50, pago único). Único lugar donde vive la URL.
+  // Vacío => no se muestra ningún botón de pago (la web funciona igual).
   // Solo se acepta HTTPS en un dominio de Wompi (ver hostWompiValido); cualquier otro valor se ignora.
-  var WOMPI_ENLACE_PREMIUM = "";
+  var WOMPI_ENLACE_PREMIUM = "https://s.wompi.sv/2252189D3W";
 
   // Worker de contacto (Cloudflare), desplegado en producción.
   var ENDPOINT_SOLICITUDES = "https://lacre-contacto.panel-dte-oauth.workers.dev/solicitudes";
