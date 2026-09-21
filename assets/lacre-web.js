@@ -45,7 +45,7 @@
   /* ---------------- Enlace de pago Wompi ---------------- */
 
   function hostWompiValido(host) {
-    return host === "wompi.sv" || /.wompi.sv$/.test(host);
+    return host === "wompi.sv" || /\.wompi\.sv$/.test(host);
   }
 
   // Devuelve la URL de pago validada o null (vacía, mal formada, no HTTPS, host ajeno o con credenciales).
@@ -271,8 +271,10 @@
       };
     }
 
-    var CONTROL = /[\x00-\x1f\x7f]/;
-    var CONTROL_MENSAJE = /[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/;
+    // Mismos caracteres que rechaza el Worker de contacto: controles ASCII y C1, direccion de texto (bidi), separadores de linea y ancho cero.
+    // En el mensaje se permiten saltos de linea, tabulaciones y U+200C/U+200D.
+    var CONTROL = /[\x00-\x1f\x7f\u0080-\u009f\u061c\u200b-\u200f\u2028\u2029\u202a-\u202e\u2060\u2066-\u2069\ufeff]/;
+    var CONTROL_MENSAJE = /[\x00-\x08\x0b\x0c\x0e-\x1f\x7f\u0080-\u009f\u061c\u200b\u200e\u200f\u2028\u2029\u202a-\u202e\u2060\u2066-\u2069\ufeff]/;
 
     function validar(v) {
       var e = {};
