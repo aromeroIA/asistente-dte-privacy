@@ -329,9 +329,7 @@ otro sitio.
 
 ## 10. Cómo eliminar su información
 
-Toda su información se elimina al desinstalar la extensión (Chrome
-borra automáticamente los datos de almacenamiento local de una
-extensión desinstalada). También puede eliminar registros
+Los datos almacenados por LACRE dentro del almacenamiento de la extensión se eliminan al desinstalarla. Los archivos que usted haya descargado a su equipo, como respaldos, PDF o JSON, no se eliminan automáticamente. También puede eliminar registros
 individuales desde la propia interfaz de la extensión en cualquier
 momento.
 
