@@ -154,7 +154,7 @@
           "name": "¿Cómo puedo adquirir una licencia?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Envíe su solicitud en la sección Contáctanos. Le indicaremos cómo realizar el pago. Cuando se confirme el pago, le entregamos su código de licencia y usted activa LACRE en la extensión. No pedimos su NIT en la solicitud: la licencia se vincula a su empresa al activarla."
+            "text": "Envíe su solicitud en la sección Contáctanos. Le indicaremos cómo realizar el pago. Cuando se confirme el pago, le entregamos su identificador de licencia y su secreto de activación, y usted activa LACRE en la extensión. No pedimos su NIT en la solicitud: la licencia se vincula a su empresa al activarla."
           }
         },
         {
@@ -683,6 +683,10 @@
   .exito h3 { font-size: 1.3rem; color: var(--good); margin-bottom: 8px; }
   .exito h3:focus { outline: 2px solid var(--primary-bright); outline-offset: 4px; }
   .exito p { margin-bottom: 18px; }
+  .exito-pago { margin: 0 0 18px; padding-top: 4px; }
+  .exito-pago h4 { font-size: 1.05rem; margin-bottom: 8px; }
+  .exito-pago ol { margin: 0 0 14px 1.2em; padding: 0; }
+  .exito-pago li { margin-bottom: 6px; }
   .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 </style>
 </head>
@@ -968,7 +972,7 @@
 
         <details class="faq-item">
           <summary>¿Cómo puedo adquirir una licencia?</summary>
-          <p class="faq-resp">Envíe su solicitud en la sección <a href="#contacto">Contáctanos</a>. Le indicaremos cómo realizar el pago. Cuando se confirme el pago, le entregamos su código de licencia y usted activa LACRE en la extensión. No pedimos su NIT en la solicitud: la licencia se vincula a su empresa al activarla.</p>
+          <p class="faq-resp">Envíe su solicitud en la sección <a href="#contacto">Contáctanos</a>. Le indicaremos cómo realizar el pago. Cuando se confirme el pago, le entregamos su identificador de licencia y su secreto de activación, y usted activa LACRE en la extensión. No pedimos su NIT en la solicitud: la licencia se vincula a su empresa al activarla.</p>
         </details>
 
         <details class="faq-item">
@@ -1045,6 +1049,15 @@
           <div id="form-exito" class="exito" hidden>
             <h3 id="exito-titulo" tabindex="-1"></h3>
             <p id="exito-texto"></p>
+            <div id="pago-premium" class="exito-pago" hidden>
+              <h4>Pago de LACRE Premium</h4>
+              <ol>
+                <li>Paga US$50 (pago único) con el enlace seguro de Wompi. LACRE no recibe ni guarda los datos de tu tarjeta.</li>
+                <li>Usa el mismo correo con el que enviaste la solicitud.</li>
+                <li>Verificaremos tu pago y te enviaremos por correo el identificador de licencia y el secreto de activación.</li>
+              </ol>
+              <a class="btn btn-primary" id="pago-premium-enlace" href="#" target="_blank" rel="noopener noreferrer">Pagar con Wompi</a>
+            </div>
             <button type="button" class="btn btn-ghost" id="nueva-solicitud">Enviar otra solicitud</button>
           </div>
 

@@ -19,7 +19,12 @@
   // Cuando exista, escribir solo dígitos con código de país (sin "+", espacios ni guiones).
   var WHATSAPP_NUMERO = "";
 
-  // Worker de contacto (Cloudflare). URL prevista; el Worker aún no está desplegado.
+  // Enlace de pago Wompi para LACRE Premium (US$50, pago único). DEBE PERMANECER VACÍO mientras
+  // no exista el enlace real creado en la cuenta Wompi: vacío => no se muestra ningún botón de pago.
+  // Solo se acepta HTTPS en un dominio de Wompi (ver hostWompiValido); cualquier otro valor se ignora.
+  var WOMPI_ENLACE_PREMIUM = "";
+
+  // Worker de contacto (Cloudflare), desplegado en producción.
   var ENDPOINT_SOLICITUDES = "https://lacre-contacto.panel-dte-oauth.workers.dev/solicitudes";
 
   var CORREO_CONTACTO = "aromero@lacresv.com";
@@ -35,6 +40,33 @@
   function irA(elemento) {
     if (!elemento) return;
     elemento.scrollIntoView({ behavior: reducirMovimiento() ? "auto" : "smooth", block: "start" });
+  }
+
+  /* ---------------- Enlace de pago Wompi ---------------- */
+
+  function hostWompiValido(host) {
+    return host === "wompi.sv" || /.wompi.sv$/.test(host);
+  }
+
+  // Devuelve la URL de pago validada o null (vacía, mal formada, no HTTPS, host ajeno o con credenciales).
+  function enlaceWompiPremium() {
+    var bruto = String(WOMPI_ENLACE_PREMIUM || "").trim();
+    if (!bruto) return null;
+    try {
+      var u = new URL(bruto);
+      if (u.protocol !== "https:" || u.username || u.password || !hostWompiValido(u.hostname)) return null;
+      return u.href;
+    } catch (e) { return null; }
+  }
+
+  function mostrarPagoPremium(visible) {
+    var bloque = $("pago-premium");
+    if (!bloque) return;
+    var url = visible ? enlaceWompiPremium() : null;
+    var enlace = $("pago-premium-enlace");
+    if (!url || !enlace) { bloque.hidden = true; return; }
+    enlace.href = url;
+    bloque.hidden = false;
   }
 
   /* ---------------- WhatsApp ---------------- */
@@ -317,6 +349,7 @@
       form.hidden = true;
       exitoTitulo.textContent = t.exitoTitulo;
       exitoTexto.textContent = t.exito;
+      mostrarPagoPremium(tipo === "premium");
       exito.hidden = false;
       exitoTitulo.focus();
     }
@@ -324,6 +357,7 @@
     function reiniciar() {
       form.reset();
       exito.hidden = true;
+      mostrarPagoPremium(false);
       form.hidden = false;
       mostradoEl = Date.now();
       limpiarErrores();
