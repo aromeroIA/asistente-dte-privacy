@@ -278,7 +278,9 @@ licencia, y le pedimos que no los incluya en el mensaje.
 
 **Finalidad.** Responder su solicitud o consulta, preparar
 cotizaciones y gestionar el proceso de adquisición y licenciamiento de
-LACRE.
+LACRE. Con esa misma finalidad, los datos que usted escribe en el
+formulario se utilizan también para notificar por correo electrónico
+al operador de LACRE de que hay una solicitud nueva por atender.
 
 **Almacenamiento.** Las solicitudes se reciben mediante un servicio
 propio de LACRE que funciona en Cloudflare y se guardan en una base de
