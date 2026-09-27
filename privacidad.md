@@ -148,7 +148,7 @@ layout: null
 
 # Política de Privacidad — LACRE
 
-**Última actualización: 20 de septiembre de 2026**
+**Última actualización: 27 de septiembre de 2026**
 
 Esta política describe qué información maneja la extensión de Chrome
 "LACRE" y cómo se trata. Esta extensión está
@@ -156,7 +156,8 @@ diseñada para uso profesional/comercial en El Salvador, como
 herramienta de apoyo sobre el portal de Facturación Electrónica del
 Ministerio de Hacienda (admin.factura.gob.sv). También describe los datos que
 se reciben a través de los formularios de contacto de este sitio web
-(lacresv.com); ver la sección 6.
+(lacresv.com; ver la sección 6) y a través del canal de automatización
+comercial de LACRE por WhatsApp (ver la sección 7).
 
 ## 1. Resumen
 
@@ -299,7 +300,95 @@ de su solicitud escribiendo a **aromero@lacresv.com**.
 usan con fines publicitarios, y este sitio no utiliza rastreadores de
 analítica ni publicidad.
 
-## 7. Portal de Hacienda (admin.factura.gob.sv)
+## 7. Automatización comercial de LACRE por WhatsApp
+
+Además de la extensión y de los formularios de contacto (secciones 2 a
+6), LACRE ofrece un canal de automatización comercial por WhatsApp
+para solicitar y dar seguimiento a **LACRE Premium**. Este canal
+funciona sobre **WhatsApp Business Platform (Cloud API) de Meta** y es
+un servicio propio de LACRE, independiente de la extensión: nada de lo
+descrito aquí accede a los datos que usted introduce dentro de la
+extensión (secciones 2 a 5).
+
+**Cómo se inicia.** Usted puede solicitar LACRE Premium desde el
+formulario de este sitio (que le entrega un código y un enlace para
+continuar por WhatsApp) o escribiendo directamente al número comercial
+de WhatsApp de LACRE.
+
+**Datos que se reciben y procesan:**
+- **Su número de WhatsApp**, tal como lo entrega la plataforma de
+  Meta (sin datos adicionales de su perfil salvo que usted los
+  escriba).
+- Un **identificador técnico de Meta** para su interacción con el
+  número de negocio (cuando la plataforma lo proporciona); no es un
+  dato que identifique a la persona por sí solo.
+- **Metadatos de cada mensaje** que usted envía (un identificador de
+  mensaje y su tipo), únicamente para evitar procesar el mismo mensaje
+  dos veces si Meta lo reintenta. Los avisos de entrega/lectura de
+  WhatsApp se cuentan, no se guardan en detalle.
+- **El texto de sus mensajes de WhatsApp nunca se guarda tal como lo
+  escribe.** Se usa únicamente en memoria para responder en el momento
+  (por ejemplo, para reconocer su código de solicitud). Lo único que
+  se conserva es una versión **editada** de los últimos turnos de la
+  conversación (como máximo los 10 más recientes por número): antes de
+  guardarla, el sistema sustituye automáticamente correos, teléfonos,
+  códigos de solicitud, enlaces y cadenas largas, y la recorta a unos
+  pocos cientos de caracteres. Esa copia editada sirve solo para que el
+  asistente automatizado mantenga el hilo inmediato de la conversación;
+  al llegar nuevos mensajes, los turnos más antiguos se eliminan
+  automáticamente.
+- **Los datos de su solicitud**: nombre, correo electrónico y nombre
+  de su empresa (los tres opcionales, igual que en el formulario web),
+  el código público de seguimiento, el estado de la solicitud y sus
+  fechas.
+- **Datos del pago**, cuando corresponda: si su solicitud llega a la
+  etapa de pago, se genera un enlace de pago de Wompi y se guarda su
+  identificador, y al confirmarse el pago se guarda el identificador
+  de la transacción de Wompi, el monto y la fecha de confirmación.
+  **LACRE nunca recibe ni almacena los datos de su tarjeta**; esos
+  datos son tratados directamente por Wompi según sus propias
+  condiciones (ver también la sección 4 de los
+  <a href="/terminos">Términos y Condiciones</a>).
+- **Registro interno de auditoría**: qué acción ejecutó el asistente
+  automatizado (por ejemplo, "consultar precio" o "vincular código") y
+  su resultado. Este registro se guarda sin datos personales, solo
+  códigos técnicos.
+- Si su caso requiere que lo atienda una persona, se registra el
+  motivo técnico de esa derivación.
+
+**Avisos internos al operador.** Cuando ocurre un evento relevante de
+su solicitud (nueva solicitud, pago recibido, o que su caso pasó a
+revisión manual), LACRE envía un correo interno al operador con el
+tipo de evento, el código de la solicitud y su número de WhatsApp
+**parcialmente oculto** (por ejemplo, terminado en «…1234»). Ese aviso
+interno **nunca incluye** el texto de su conversación, ni su correo,
+ni ningún dato de pago.
+
+**Finalidad.** Dar seguimiento a su solicitud de LACRE Premium,
+permitirle continuar la conversación por WhatsApp, generarle y
+confirmarle el pago, y contactarlo si su caso requiere revisión
+manual.
+
+**Conservación.** A diferencia de las solicitudes de los formularios
+de contacto (sección 6, con borrado automático a los 12 meses), los
+registros de este canal (su solicitud, el historial de transiciones,
+los mensajes de WhatsApp identificados por su número y el registro de
+pagos) **actualmente no tienen un borrado automático programado**: se
+conservan mientras sean necesarios para dar seguimiento a su solicitud
+y por razones de auditoría del servicio. Puede solicitar su
+eliminación anticipada; vea la sección 11 y la página
+<a href="/eliminacion-datos">Eliminación de Datos</a>.
+
+**Uso de sus datos.** Los datos de este canal no se venden ni se usan
+con fines publicitarios.
+
+**Servicio de terceros.** Este canal depende de WhatsApp Business
+Platform (Meta). Al escribir al número comercial de LACRE, el
+tratamiento que Meta/WhatsApp haga de su cuenta y de su uso de la
+plataforma se rige por las condiciones y política de privacidad
+propias de WhatsApp/Meta, que LACRE no controla.
+
+## 8. Portal de Hacienda (admin.factura.gob.sv)
 
 La extensión interactúa con la página del portal de Facturación
 Electrónica para leer y, cuando usted lo solicita, rellenar
@@ -308,7 +397,7 @@ interacción ocurre únicamente dentro de esa página oficial del
 Ministerio de Hacienda — la extensión no envía esos datos a ningún
 otro sitio.
 
-## 8. Qué NO hace esta extensión
+## 9. Qué NO hace esta extensión
 
 - No vende ni comparte su información con terceros con fines
   publicitarios o comerciales.
@@ -319,7 +408,7 @@ otro sitio.
 - No recopila su ubicación, historial de navegación general, ni
   ningún dato biométrico.
 
-## 9. Permisos del navegador que solicita la extensión, y por qué
+## 10. Permisos del navegador que solicita la extensión, y por qué
 
 | Permiso | Para qué se usa |
 |---|---|
@@ -329,13 +418,20 @@ otro sitio.
 | `sidePanel` | Mostrar el panel de la extensión en la barra lateral de Chrome. |
 | `identity` | El flujo de vinculación de cuenta de correo (sección 4). |
 
-## 10. Cómo eliminar su información
+## 11. Cómo eliminar su información
 
 Los datos almacenados por LACRE dentro del almacenamiento de la extensión se eliminan al desinstalarla. Los archivos que usted haya descargado a su equipo, como respaldos, PDF o JSON, no se eliminan automáticamente. También puede eliminar registros
 individuales desde la propia interfaz de la extensión en cualquier
 momento.
 
-## 11. Contacto
+Para los datos de los formularios de contacto (sección 6) o de su
+solicitud de LACRE Premium por el canal web o de WhatsApp (sección 7),
+puede solicitar su eliminación escribiendo a
+**aromero@lacresv.com**. Vea el procedimiento completo, qué
+información necesitamos para localizar sus datos y las excepciones
+aplicables en <a href="/eliminacion-datos">Eliminación de Datos</a>.
+
+## 12. Contacto
 
 Para preguntas sobre esta política, escriba a:
 **aromero@lacresv.com**
@@ -351,6 +447,7 @@ Para preguntas sobre esta política, escriba a:
       <a href="/">Inicio</a>
       <a href="/terminos">Términos y Condiciones</a>
       <a href="/reembolso">Política de Reembolso</a>
+      <a href="/eliminacion-datos">Eliminación de Datos</a>
       <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>
     </div>
   </div>
