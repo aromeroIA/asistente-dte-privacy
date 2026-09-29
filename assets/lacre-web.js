@@ -1,31 +1,40 @@
 /* =========================================================
-   lacre-web.js -- comportamiento de lacresv.com (Fase 5, Etapa 3).
+   lacre-web.js -- comportamiento de lacresv.com (Fase 5, Etapa 3; Etapa 1.6.4: Premium -> lacre-ventas + WhatsApp).
 
    Qué hace:
      1. Formulario de solicitudes (Premium / cotización personalizada / consulta).
      2. Preselección por URL: ?origen=extension&plan=premium|personalizada.
-     3. Botón de WhatsApp (oculto mientras no exista un número aprobado).
+     3. Botón de WhatsApp genérico (header/footer), oculto mientras no exista un número aprobado.
 
-   Sin dependencias, sin analítica, sin cookies. El formulario envía sus datos
-   únicamente al Worker de contacto de LACRE (ENDPOINT_SOLICITUDES).
+   Sin dependencias, sin analítica, sin cookies. Dos destinos posibles para el formulario:
+     - Premium      -> ENDPOINT_VENTAS_PREMIUM (POST /v1/ventas de lacre-ventas): crea la solicitud y
+                       devuelve un código público + un enlace de WhatsApp con un mensaje de INTENCIÓN
+                       (nunca de compra ya realizada). No se usa ya ningún enlace de pago estático.
+     - Personalizada / Consulta -> ENDPOINT_SOLICITUDES (Worker de contacto, sin cambios). Personalizada
+                       agrega, tras el 201, un botón para continuar por WhatsApp con un mensaje fijo (sin
+                       código: este Worker no genera ninguno); NUNCA crea una venta Premium.
    ========================================================= */
 (function () {
   "use strict";
 
   /* ---------------- Configuración ---------------- */
 
-  // WhatsApp Business. DEBE PERMANECER VACÍA mientras no exista un número aprobado:
-  // vacía => no se muestra ningún botón de WhatsApp y no se genera ningún enlace wa.me.
-  // Cuando exista, escribir solo dígitos con código de país (sin "+", espacios ni guiones).
-  var WHATSAPP_NUMERO = "";
+  // WhatsApp Business comercial de LACRE. Vacía => no se muestra ningún botón de WhatsApp (genérico ni de
+  // continuación) y no se genera ningún enlace wa.me. Solo dígitos con código de país (sin "+", espacios
+  // ni guiones). Aprobado: +503 6461 4716.
+  var WHATSAPP_NUMERO = "50364614716";
 
-  // Enlace de pago Wompi para LACRE Premium (US$50, pago único). Único lugar donde vive la URL.
-  // Vacío => no se muestra ningún botón de pago (la web funciona igual).
-  // Solo se acepta HTTPS en un dominio de Wompi (ver hostWompiValido); cualquier otro valor se ignora.
-  var WOMPI_ENLACE_PREMIUM = "https://s.wompi.sv/2252189D3W";
+  // lacre-ventas STAGING (Etapa 1.6.4, bloque de cierre): SOLO Premium pasa por aquí. Personalizada y
+  // Consulta siguen en ENDPOINT_SOLICITUDES (lacre-contacto), sin cambios. Pendiente para producción:
+  // reemplazar por el Worker lacre-ventas de producción cuando exista (ver auditoría de la Etapa 1.6.4).
+  var ENDPOINT_VENTAS_PREMIUM = "https://lacre-ventas-staging.panel-dte-oauth.workers.dev/v1/ventas";
 
-  // Worker de contacto (Cloudflare), desplegado en producción.
+  // Worker de contacto (Cloudflare), desplegado en producción. Personalizada y consulta general.
   var ENDPOINT_SOLICITUDES = "https://lacre-contacto.panel-dte-oauth.workers.dev/solicitudes";
+
+  // Mensaje prellenado de WhatsApp para "Personalizada" (lacre-contacto no genera ningún código de
+  // solicitud: no se fabrica uno). NO debe iniciar ni sugerir una compra Premium.
+  var MENSAJE_WHATSAPP_PERSONALIZADA = "Hola, quiero más información sobre el servicio personalizado de LACRE.";
 
   var CORREO_CONTACTO = "aromero@lacresv.com";
   var TIMEOUT_MS = 15000;
@@ -42,46 +51,62 @@
     elemento.scrollIntoView({ behavior: reducirMovimiento() ? "auto" : "smooth", block: "start" });
   }
 
-  /* ---------------- Enlace de pago Wompi ---------------- */
+  /* ---------------- WhatsApp ---------------- */
 
-  function hostWompiValido(host) {
-    return host === "wompi.sv" || /\.wompi\.sv$/.test(host);
+  function numeroWhatsAppValido() {
+    var numero = String(WHATSAPP_NUMERO || "").trim();
+    return /^[0-9]{8,15}$/.test(numero) ? numero : null;
   }
 
-  // Devuelve la URL de pago validada o null (vacía, mal formada, no HTTPS, host ajeno o con credenciales).
-  function enlaceWompiPremium() {
-    var bruto = String(WOMPI_ENLACE_PREMIUM || "").trim();
-    if (!bruto) return null;
-    try {
-      var u = new URL(bruto);
-      if (u.protocol !== "https:" || u.username || u.password || !hostWompiValido(u.hostname)) return null;
-      return u.href;
-    } catch (e) { return null; }
+  function enlaceWhatsApp(texto) {
+    var numero = numeroWhatsAppValido();
+    return numero ? "https://wa.me/" + numero + "?text=" + encodeURIComponent(texto) : null;
   }
 
-  function mostrarPagoPremium(visible) {
-    var bloque = $("pago-premium");
-    if (!bloque) return;
-    var url = visible ? enlaceWompiPremium() : null;
-    var enlace = $("pago-premium-enlace");
-    if (!url || !enlace) { bloque.hidden = true; return; }
+  function iniciarWhatsapp() {
+    var numero = numeroWhatsAppValido();
+    todos("[data-whatsapp]").forEach(function (el) {
+      if (!numero) { el.hidden = true; return; }
+      var enlace = el.matches("a") ? el : el.querySelector("a");
+      if (enlace) enlace.href = "https://wa.me/" + numero + "?text=" + encodeURIComponent("Hola, quiero información sobre LACRE.");
+      el.hidden = false;
+    });
+  }
+
+  /* ---------------- "Continuar por WhatsApp" tras una solicitud (Etapa 1.6.4) ---------------- */
+
+  // Premium: `url` viene de lacre-ventas (whatsapp_url), ya con el código incluido en el texto -- nunca se
+  // reconstruye aquí. Personalizada: `url` se arma en el propio sitio con el mensaje fijo aprobado, SIN
+  // código (lacre-contacto no genera ninguno). `codigo` solo se muestra para Premium.
+  function mostrarContinuarWhatsApp(url, codigo) {
+    var bloque = $("whatsapp-continuar");
+    var enlace = $("whatsapp-continuar-enlace");
+    var lineaCodigo = $("whatsapp-continuar-codigo");
+    if (!bloque || !enlace) return;
+    if (!url) {
+      bloque.hidden = true;
+      if (lineaCodigo) { lineaCodigo.hidden = true; lineaCodigo.textContent = ""; }
+      return;
+    }
     enlace.href = url;
+    if (lineaCodigo) {
+      if (codigo) { lineaCodigo.textContent = "Su número de solicitud es: " + codigo; lineaCodigo.hidden = false; }
+      else { lineaCodigo.hidden = true; lineaCodigo.textContent = ""; }
+    }
     bloque.hidden = false;
   }
 
-  /* ---------------- WhatsApp ---------------- */
+  /* ---------------- Idempotencia (Premium -> lacre-ventas) ---------------- */
 
-  function iniciarWhatsapp() {
-    var numero = String(WHATSAPP_NUMERO || "").trim();
-    var valido = /^[0-9]{8,15}$/.test(numero);
-    todos("[data-whatsapp]").forEach(function (el) {
-      if (!valido) { el.hidden = true; return; }
-      var enlace = el.matches("a") ? el : el.querySelector("a");
-      if (enlace) {
-        enlace.href = "https://wa.me/" + numero + "?text=" + encodeURIComponent("Hola, quiero información sobre LACRE.");
-      }
-      el.hidden = false;
-    });
+  // Una clave por INTENTO de solicitud: se genera una sola vez y se reutiliza en reintentos (p. ej. un
+  // fallo de red) para que lacre-ventas nunca cree dos solicitudes por el mismo intento; "Enviar otra
+  // solicitud" (reiniciar) genera una nueva. No es secreta: es opaca y de un solo uso lógico (10 min).
+  function generarIdempotencyKey() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
+    var alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var out = "";
+    for (var i = 0; i < 32; i++) out += alfabeto.charAt(Math.floor(Math.random() * alfabeto.length));
+    return out;
   }
 
   /* ---------------- Formulario ---------------- */
@@ -91,15 +116,15 @@
       boton: "Enviar solicitud",
       mensaje: "Mensaje",
       mensajeObligatorio: false,
-      exitoTitulo: "Solicitud recibida",
-      exito: "Solicitud recibida. Nos pondremos en contacto contigo para coordinar el pago y la entrega de la licencia."
+      exitoTitulo: "Solicitud creada correctamente",
+      exito: "Continúe por WhatsApp para completar su proceso."
     },
     personalizada: {
       boton: "Solicitar cotización",
       mensaje: "Comentarios",
       mensajeObligatorio: false,
-      exitoTitulo: "Solicitud recibida",
-      exito: "Solicitud recibida. Revisaremos la configuración solicitada y te contactaremos para preparar la cotización."
+      exitoTitulo: "Solicitud recibida correctamente",
+      exito: "Si desea continuar con la consulta, puede escribirnos directamente por WhatsApp."
     },
     consulta: {
       boton: "Enviar mensaje",
@@ -168,6 +193,7 @@
     var mostradoEl = Date.now();
     var origen = "web";
     var enviando = false;
+    var idempotencyKeyPremium = null; // una por intento de solicitud Premium; ver generarIdempotencyKey()
 
     function tipoActual() {
       var marcado = form.querySelector('input[name="tipo"]:checked');
@@ -346,12 +372,21 @@
       resumen.focus();
     }
 
-    function mostrarExito(tipo) {
+    // `datos`: para "premium", { codigo, whatsappUrl } (whatsappUrl viene TAL CUAL de lacre-ventas, con el
+    // código ya incluido en el texto); para "personalizada", se arma aquí un enlace de WhatsApp con el
+    // mensaje fijo aprobado (sin código: lacre-contacto no genera ninguno); "consulta" no muestra WhatsApp.
+    function mostrarExito(tipo, datos) {
       var t = TEXTOS_TIPO[tipo] || TEXTOS_TIPO.consulta;
       form.hidden = true;
       exitoTitulo.textContent = t.exitoTitulo;
       exitoTexto.textContent = t.exito;
-      mostrarPagoPremium(tipo === "premium");
+      if (tipo === "premium" && datos && datos.whatsappUrl) {
+        mostrarContinuarWhatsApp(datos.whatsappUrl, datos.codigo || null);
+      } else if (tipo === "personalizada") {
+        mostrarContinuarWhatsApp(enlaceWhatsApp(MENSAJE_WHATSAPP_PERSONALIZADA), null);
+      } else {
+        mostrarContinuarWhatsApp(null, null);
+      }
       exito.hidden = false;
       exitoTitulo.focus();
     }
@@ -359,12 +394,28 @@
     function reiniciar() {
       form.reset();
       exito.hidden = true;
-      mostrarPagoPremium(false);
+      mostrarContinuarWhatsApp(null, null);
+      idempotencyKeyPremium = null;
       form.hidden = false;
       mostradoEl = Date.now();
       limpiarErrores();
       aplicarTipo(tipoActual());
       $("f-nombre").focus();
+    }
+
+    // Respuesta de POST /v1/ventas (Premium). Nunca se muestra un error interno, token ni endpoint: solo
+    // mensajes amigables, con el correo de contacto como salida siempre disponible.
+    function manejarRespuestaPremium(estado, cuerpo) {
+      ocupado(false);
+      if ((estado === 201 || estado === 200) && cuerpo && cuerpo.ok && cuerpo.whatsapp_url) {
+        mostrarExito("premium", { codigo: cuerpo.codigo_publico || null, whatsappUrl: cuerpo.whatsapp_url });
+        return;
+      }
+      if (estado === 400) { mostrarErrorGeneral("Revise los datos ingresados e intente nuevamente, o escríbanos a"); return; }
+      if (estado === 409) { mostrarErrorGeneral("Ya existe una solicitud equivalente en curso. Revise WhatsApp o escríbanos a"); return; }
+      if (estado === 429) { mostrarErrorGeneral("Se ha alcanzado temporalmente el límite de solicitudes. Intente de nuevo más tarde o escríbanos a"); return; }
+      if (estado === 503) { mostrarErrorGeneral("El servicio no está disponible en este momento. Intente más tarde o escríbanos a"); return; }
+      mostrarErrorGeneral("No pudimos crear su solicitud. Intente de nuevo o escríbanos a");
     }
 
     /* ---- envío ---- */
@@ -379,6 +430,30 @@
 
       var controlador = new AbortController();
       var temporizador = setTimeout(function () { controlador.abort(); }, TIMEOUT_MS);
+
+      // Premium (Etapa 1.6.4): va a lacre-ventas (/v1/ventas), NUNCA a lacre-contacto. Personalizada y
+      // consulta siguen exactamente igual que antes, sin tocar ENDPOINT_SOLICITUDES ni su payload.
+      if (v.tipo === "premium") {
+        if (!idempotencyKeyPremium) idempotencyKeyPremium = generarIdempotencyKey();
+        var payloadPremium = { nombre: v.nombre, correo: v.correo, idempotency_key: idempotencyKeyPremium };
+        fetch(ENDPOINT_VENTAS_PREMIUM, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payloadPremium),
+          mode: "cors",
+          credentials: "omit",
+          signal: controlador.signal
+        }).then(function (resp) {
+          clearTimeout(temporizador);
+          return resp.json().catch(function () { return {}; }).then(function (cuerpo) { manejarRespuestaPremium(resp.status, cuerpo); });
+        }).catch(function () {
+          clearTimeout(temporizador);
+          ocupado(false);
+          mostrarErrorGeneral("No pudimos enviar su solicitud. Intente de nuevo o escríbanos a");
+        });
+        return;
+      }
+
       fetch(ENDPOINT_SOLICITUDES, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
