@@ -24,10 +24,9 @@
   // ni guiones). Aprobado: +503 6461 4716.
   var WHATSAPP_NUMERO = "50364614716";
 
-  // lacre-ventas STAGING (Etapa 1.6.4, bloque de cierre): SOLO Premium pasa por aquí. Personalizada y
-  // Consulta siguen en ENDPOINT_SOLICITUDES (lacre-contacto), sin cambios. Pendiente para producción:
-  // reemplazar por el Worker lacre-ventas de producción cuando exista (ver auditoría de la Etapa 1.6.4).
-  var ENDPOINT_VENTAS_PREMIUM = "https://lacre-ventas-staging.panel-dte-oauth.workers.dev/v1/ventas";
+  // lacre-ventas PRODUCCIÓN (Etapa 1.6.5): SOLO Premium pasa por aquí. Personalizada y Consulta siguen en
+  // ENDPOINT_SOLICITUDES (lacre-contacto), sin cambios.
+  var ENDPOINT_VENTAS_PREMIUM = "https://lacre-ventas.panel-dte-oauth.workers.dev/v1/ventas";
 
   // Worker de contacto (Cloudflare), desplegado en producción. Personalizada y consulta general.
   var ENDPOINT_SOLICITUDES = "https://lacre-contacto.panel-dte-oauth.workers.dev/solicitudes";
