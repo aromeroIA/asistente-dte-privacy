@@ -6,7 +6,7 @@
 <title>LACRE — Extensión de Chrome para facturación electrónica DTE</title>
 <meta name="description" content="LACRE es una extensión de Chrome para facturación electrónica en El Salvador. Gestione DTE, clientes, productos e inventario desde el portal de Hacienda.">
 <meta name="theme-color" content="#122744">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src https://lacre-contacto.panel-dte-oauth.workers.dev; form-action 'self'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src https://lacre-contacto.panel-dte-oauth.workers.dev https://lacre-ventas-staging.panel-dte-oauth.workers.dev; form-action 'self'; base-uri 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://lacresv.com/">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -689,6 +689,7 @@
   .exito-pago h4 { font-size: 1.05rem; margin-bottom: 8px; }
   .exito-pago ol { margin: 0 0 14px 1.2em; padding: 0; }
   .exito-pago li { margin-bottom: 6px; }
+  .whatsapp-codigo { font-weight: 600; margin-bottom: 12px; }
   .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 </style>
 </head>
@@ -1051,14 +1052,9 @@
           <div id="form-exito" class="exito" hidden>
             <h3 id="exito-titulo" tabindex="-1"></h3>
             <p id="exito-texto"></p>
-            <div id="pago-premium" class="exito-pago" hidden>
-              <h4>Pago de LACRE Premium</h4>
-              <ol>
-                <li>Paga US$50 (pago único) con el enlace seguro de Wompi. LACRE no recibe ni guarda los datos de tu tarjeta.</li>
-                <li>Usa el mismo correo con el que enviaste la solicitud.</li>
-                <li>Verificaremos tu pago y te enviaremos por correo el identificador de licencia y el secreto de activación.</li>
-              </ol>
-              <a class="btn btn-primary" id="pago-premium-enlace" href="#" target="_blank" rel="noopener noreferrer">Pagar con Wompi</a>
+            <div id="whatsapp-continuar" class="exito-pago" hidden>
+              <p id="whatsapp-continuar-codigo" class="whatsapp-codigo" hidden></p>
+              <a class="btn btn-primary" id="whatsapp-continuar-enlace" href="#" target="_blank" rel="noopener noreferrer">Continuar por WhatsApp</a>
             </div>
             <button type="button" class="btn btn-ghost" id="nueva-solicitud">Enviar otra solicitud</button>
           </div>
