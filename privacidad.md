@@ -325,7 +325,9 @@ de WhatsApp de LACRE.
 - **Metadatos de cada mensaje** que usted envía (un identificador de
   mensaje y su tipo), únicamente para evitar procesar el mismo mensaje
   dos veces si Meta lo reintenta. Los avisos de entrega/lectura de
-  WhatsApp se cuentan, no se guardan en detalle.
+  WhatsApp se cuentan y, para los mensajes que LACRE le envía, su estado
+  (enviado, entregado, leído o fallido) se anota junto a ese mensaje y
+  se conserva por el mismo plazo que el mensaje.
 - **El texto de sus mensajes de WhatsApp y de las respuestas que
   recibe** (tanto las del asistente automatizado como, cuando
   corresponda, las del equipo de LACRE) **se guarda tal como se
@@ -399,6 +401,10 @@ este canal los plazos son los siguientes:
   recibidas): **90 días**, con borrado automático.
 - **Registro de las acciones del equipo de LACRE** sobre su caso:
   **24 meses**, con borrado automático.
+- **Estado de la conversación** (sin texto: su número, si la atiende el
+  asistente o una persona, prioridad y motivo técnico): se elimina
+  automáticamente cuando la conversación está inactiva y ya no quedan
+  mensajes suyos guardados.
 - **Su solicitud, el historial de transiciones y el registro de
   pagos**: **no tienen un borrado automático programado**; se
   conservan mientras sean necesarios para dar seguimiento a su
