@@ -148,7 +148,7 @@ layout: null
 
 # Política de Privacidad — LACRE
 
-**Última actualización: 27 de septiembre de 2026**
+**Última actualización: 4 de octubre de 2026**
 
 Esta política describe qué información maneja la extensión de Chrome
 "LACRE" y cómo se trata. Esta extensión está
@@ -326,17 +326,24 @@ de WhatsApp de LACRE.
   mensaje y su tipo), únicamente para evitar procesar el mismo mensaje
   dos veces si Meta lo reintenta. Los avisos de entrega/lectura de
   WhatsApp se cuentan, no se guardan en detalle.
-- **El texto de sus mensajes de WhatsApp nunca se guarda tal como lo
-  escribe.** Se usa únicamente en memoria para responder en el momento
-  (por ejemplo, para reconocer su código de solicitud). Lo único que
-  se conserva es una versión **editada** de los últimos turnos de la
-  conversación (como máximo los 10 más recientes por número): antes de
-  guardarla, el sistema sustituye automáticamente correos, teléfonos,
-  códigos de solicitud, enlaces y cadenas largas, y la recorta a unos
-  pocos cientos de caracteres. Esa copia editada sirve solo para que el
-  asistente automatizado mantenga el hilo inmediato de la conversación;
-  al llegar nuevos mensajes, los turnos más antiguos se eliminan
-  automáticamente.
+- **El texto de sus mensajes de WhatsApp y de las respuestas que
+  recibe** (tanto las del asistente automatizado como, cuando
+  corresponda, las del equipo de LACRE) **se guarda tal como se
+  escribió, durante un plazo limitado de 90 días**, para que una
+  persona del equipo pueda atender su caso, revisar el historial de la
+  conversación y resolver consultas o reclamos sobre su solicitud, su
+  pago o su licencia. Transcurrido ese plazo, los mensajes se eliminan
+  automáticamente. **El secreto de activación de su licencia nunca se
+  guarda en ese historial**: cuando se le reenvía por WhatsApp, el
+  historial registra solo un marcador, sin el secreto.
+- Además, el asistente automatizado conserva una copia **editada** de
+  los últimos turnos de la conversación (como máximo los 10 más
+  recientes por número): antes de guardarla, el sistema sustituye
+  automáticamente correos, teléfonos, códigos de solicitud, enlaces y
+  cadenas largas, y la recorta a unos pocos cientos de caracteres. Esa
+  copia editada sirve solo para que el asistente mantenga el hilo
+  inmediato de la conversación; al llegar nuevos mensajes, los turnos
+  más antiguos se eliminan automáticamente.
 - **Los datos de su solicitud**: nombre, correo electrónico y nombre
   de su empresa (los tres opcionales, igual que en el formulario web),
   el código público de seguimiento, el estado de la solicitud y sus
@@ -355,6 +362,12 @@ de WhatsApp de LACRE.
   códigos técnicos.
 - Si su caso requiere que lo atienda una persona, se registra el
   motivo técnico de esa derivación.
+- **Registro de las acciones del equipo de LACRE** sobre su caso (por
+  ejemplo: tomar la conversación, responderle, cancelar una solicitud
+  que aún no se pagó, reenviarle su licencia o revocarla): fecha,
+  acción, resultado y, cuando corresponda, el motivo. Ese registro
+  **no incluye el texto de la conversación ni ningún secreto** y se
+  conserva 24 meses por razones de auditoría del servicio.
 
 **Avisos internos al operador.** Cuando ocurre un evento relevante de
 su solicitud (nueva solicitud, pago recibido, o que su caso pasó a
@@ -364,19 +377,36 @@ tipo de evento, el código de la solicitud y su número de WhatsApp
 interno **nunca incluye** el texto de su conversación, ni su correo,
 ni ningún dato de pago.
 
+**Atención por una persona.** Si usted lo pide, o si el asistente
+automatizado no puede resolver su caso, una persona del equipo de
+LACRE puede leer el historial de su conversación (dentro del plazo de
+conservación), consultar los datos de su solicitud y responderle por
+el mismo WhatsApp. Mientras una persona atiende su caso, el asistente
+automatizado deja de responder. Las respuestas con texto libre solo se
+envían dentro de las 24 horas siguientes a su último mensaje, que es
+la ventana que establece WhatsApp; fuera de ella solo se podrían usar
+mensajes de plantilla aprobados por Meta.
+
 **Finalidad.** Dar seguimiento a su solicitud de LACRE Premium,
-permitirle continuar la conversación por WhatsApp, generarle y
-confirmarle el pago, y contactarlo si su caso requiere revisión
-manual.
+permitirle continuar la conversación por WhatsApp, atender sus
+consultas y reclamos, generarle y confirmarle el pago, y contactarlo
+si su caso requiere revisión manual.
 
 **Conservación.** A diferencia de las solicitudes de los formularios
-de contacto (sección 6, con borrado automático a los 12 meses), los
-registros de este canal (su solicitud, el historial de transiciones,
-los mensajes de WhatsApp identificados por su número y el registro de
-pagos) **actualmente no tienen un borrado automático programado**: se
-conservan mientras sean necesarios para dar seguimiento a su solicitud
-y por razones de auditoría del servicio. Puede solicitar su
-eliminación anticipada; vea la sección 11 y la página
+de contacto (sección 6, con borrado automático a los 12 meses), en
+este canal los plazos son los siguientes:
+- **Texto de los mensajes de WhatsApp** (sus mensajes y las respuestas
+  recibidas): **90 días**, con borrado automático.
+- **Registro de las acciones del equipo de LACRE** sobre su caso:
+  **24 meses**, con borrado automático.
+- **Su solicitud, el historial de transiciones y el registro de
+  pagos**: **no tienen un borrado automático programado**; se
+  conservan mientras sean necesarios para dar seguimiento a su
+  solicitud, por razones de auditoría del servicio y por las
+  obligaciones contables que correspondan.
+
+Puede solicitar la eliminación anticipada de sus mensajes y de sus
+demás datos; vea la sección 11 y la página
 <a href="/eliminacion-datos">Eliminación de Datos</a>.
 
 **Uso de sus datos.** Los datos de este canal no se venden ni se usan
