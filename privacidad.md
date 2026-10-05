@@ -148,7 +148,7 @@ layout: null
 
 # Política de Privacidad — LACRE
 
-**Última actualización: 4 de octubre de 2026**
+**Última actualización: 5 de octubre de 2026**
 
 Esta política describe qué información maneja la extensión de Chrome
 "LACRE" y cómo se trata. Esta extensión está
@@ -347,9 +347,11 @@ de WhatsApp de LACRE.
   inmediato de la conversación; al llegar nuevos mensajes, los turnos
   más antiguos se eliminan automáticamente.
 - **Los datos de su solicitud**: nombre, correo electrónico y nombre
-  de su empresa (los tres opcionales, igual que en el formulario web),
-  el código público de seguimiento, el estado de la solicitud y sus
-  fechas.
+  de su empresa (los tres opcionales, igual que en el formulario web;
+  también pueden ser registrados por el equipo de LACRE a petición suya
+  durante la atención), la constancia de que usted aceptó los Términos y
+  Condiciones, el código público de seguimiento, el estado de la
+  solicitud y sus fechas.
 - **Datos del pago**, cuando corresponda: si su solicitud llega a la
   etapa de pago, se genera un enlace de pago de Wompi y se guarda su
   identificador, y al confirmarse el pago se guarda el identificador
@@ -365,8 +367,9 @@ de WhatsApp de LACRE.
 - Si su caso requiere que lo atienda una persona, se registra el
   motivo técnico de esa derivación.
 - **Registro de las acciones del equipo de LACRE** sobre su caso (por
-  ejemplo: tomar la conversación, responderle, cancelar una solicitud
-  que aún no se pagó, reenviarle su licencia o revocarla): fecha,
+  ejemplo: tomar la conversación, responderle, iniciar o completar su
+  solicitud, enviarle el enlace de pago, cancelar una solicitud que aún
+  no se pagó, reenviarle su licencia o revocarla): fecha,
   acción, resultado y, cuando corresponda, el motivo. Ese registro
   **no incluye el texto de la conversación ni ningún secreto** y se
   conserva 24 meses por razones de auditoría del servicio.
