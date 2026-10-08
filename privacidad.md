@@ -3,8 +3,7 @@ title: Política de Privacidad — LACRE
 permalink: /privacidad
 layout: null
 ---
-<html lang="es-SV">
-<head>
+<!doctype html><html lang="es-SV" data-theme="dark"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de Privacidad — LACRE</title>
@@ -16,202 +15,67 @@ layout: null
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<style>
-  :root {
-    --ink: #101826;
-    --ink-soft: #45516A;
-    --paper: #F5F7FB;
-    --surface: #FFFFFF;
-    --border: #E1E6F0;
-    --primary: #122744;
-    --primary-bright: #2A5CAA;
-    --accent: #C48A1E;
-    --accent-soft: #FBF1DD;
-    --shadow: 0 1px 2px rgba(16, 24, 38, 0.04), 0 12px 32px -16px rgba(16, 24, 38, 0.18);
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ink: #E8ECF4;
-      --ink-soft: #A9B3C8;
-      --paper: #0B1220;
-      --surface: #121A2C;
-      --border: #26314C;
-      --primary: #DCE6F7;
-      --primary-bright: #6FA1EA;
-      --accent: #E3B65A;
-      --accent-soft: #2A2313;
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 40px -20px rgba(0, 0, 0, 0.6);
-    }
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--primary-bright); }
 
-  header {
-    position: sticky; top: 0; z-index: 20;
-    background: color-mix(in srgb, var(--paper) 88%, transparent);
-    backdrop-filter: saturate(140%) blur(10px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px; padding-block: 16px; max-width: 1120px; margin: 0 auto;
-    padding-inline: clamp(20px, 5vw, 40px);
-  }
-  .brand {
-    display: flex; align-items: baseline; gap: 8px;
-    font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em;
-    text-decoration: none; color: var(--ink);
-  }
-  .brand .mark {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 28px; height: 28px; border-radius: 8px;
-    background: var(--primary); color: var(--paper);
-    font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; flex: none;
-  }
-  .brand .tag { color: var(--ink-soft); font-weight: 500; font-size: 0.85rem; }
-  .back-link { font-size: 0.92rem; color: var(--ink-soft); text-decoration: none; }
-  .back-link:hover { color: var(--ink); }
 
-  .legal-page { padding-block: 48px 80px; }
-  .wrap { max-width: 860px; margin: 0 auto; padding-inline: clamp(20px, 5vw, 40px); }
-  .eyebrow {
-    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--accent); font-weight: 600;
-    display: block; margin-bottom: 12px;
-  }
-  .legal-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 16px; box-shadow: var(--shadow);
-    padding: clamp(24px, 5vw, 56px);
-  }
-  .legal-card h1 { font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1.2; margin: 0 0 8px; }
-  .legal-card h2 { font-size: 1.25rem; margin: 40px 0 12px; padding-top: 20px; border-top: 1px solid var(--border); }
-  .legal-card h2:first-of-type { border-top: none; padding-top: 0; }
-  .legal-card p, .legal-card li { color: var(--ink-soft); font-size: 0.98rem; }
-  .legal-card strong { color: var(--ink); }
-  .legal-card code {
-    background: var(--accent-soft); color: var(--ink); border-radius: 4px;
-    padding: 0.1em 0.4em; font-family: var(--font-mono); font-size: 0.88em;
-  }
-  .legal-card table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-  .legal-card th, .legal-card td {
-    border: 1px solid var(--border); padding: 10px 12px; text-align: left; font-size: 0.92rem;
-  }
-  .legal-card th { color: var(--ink); background: var(--paper); }
-  .legal-card ul, .legal-card ol { padding-left: 1.3em; }
-  .legal-card a { color: var(--primary-bright); }
-
-  footer { border-top: 1px solid var(--border); padding-block: 26px; font-size: 0.85rem; color: var(--ink-soft); }
-  .footer-inner {
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 16px; flex-wrap: wrap; max-width: 1120px; margin: 0 auto;
-    padding-inline: clamp(20px, 5vw, 40px);
-  }
-  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-  .footer-links a { text-decoration: none; color: var(--ink-soft); }
-  .footer-links a:hover { color: var(--ink); }
-
-  @media (max-width: 560px) {
-    .legal-card { border-radius: 12px; }
-    .brand .tag { display: none; }
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="nav">
-    <a class="brand" href="/">
-      <span class="mark">L</span>
-      LACRE
-      <span class="tag">· El Salvador</span>
-    </a>
-    <a class="back-link" href="/">← Volver al inicio</a>
-  </div>
-</header>
-
-<main class="legal-page">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://lacre-contacto.panel-dte-oauth.workers.dev https://lacre-ventas.panel-dte-oauth.workers.dev; form-action 'self'; base-uri 'none'">
+<link rel="stylesheet" href="/assets/lacre-site.css"></head><body><header><div class="wrap nav"><a class="brand" href="/"><img class="brand-mark" src="/assets/lacre-mark.svg" alt=""><span>LACRE</span><span class="brand-divider" aria-hidden="true"></span><img class="brand-bird" src="/assets/torogoz.png" alt="Torogoz, identidad salvadoreña de LACRE"></a><nav aria-label="Principal"><a href="/#funciones">Funciones</a><a href="/#planes">Planes</a><a href="/#preguntas">Preguntas</a><a class="btn small" href="/#contacto">Contacto</a></nav><div class="theme-controls" role="group" aria-label="Tema de la página"><button type="button" data-theme-choice="light" aria-label="Tema claro" title="Tema claro" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1 1M18 18l1 1M5 19l1-1M18 6l1-1"/></svg></button><button type="button" data-theme-choice="dark" aria-label="Tema oscuro" title="Tema oscuro" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 15A9 9 0 0 1 9 3a9 9 0 1 0 11 12Z"/></svg></button></div></div></header><main class="legal-page">
   <div class="wrap">
     <span class="eyebrow">LACRE — Facturación electrónica para El Salvador</span>
-    <div class="legal-card" markdown="1">
-
-# Política de Privacidad — LACRE
-
-**Última actualización: 5 de octubre de 2026**
-
-Esta política describe qué información maneja la extensión de Chrome
-"LACRE" y cómo se trata. Esta extensión está
+    <div class="legal-card"><h1>Política de Privacidad — LACRE</h1>
+<p><strong>Última actualización: 5 de octubre de 2026</strong></p>
+<p>Esta política describe qué información maneja la extensión de Chrome
+&quot;LACRE&quot; y cómo se trata. Esta extensión está
 diseñada para uso profesional/comercial en El Salvador, como
 herramienta de apoyo sobre el portal de Facturación Electrónica del
 Ministerio de Hacienda (admin.factura.gob.sv). También describe los datos que
 se reciben a través de los formularios de contacto de este sitio web
 (lacresv.com; ver la sección 6) y a través del canal de automatización
-comercial de LACRE por WhatsApp (ver la sección 7).
-
-## 1. Resumen
-
-**Todos los datos que usted introduce en la extensión (clientes,
+comercial de LACRE por WhatsApp (ver la sección 7).</p>
+<h2>1. Resumen</h2>
+<p><strong>Todos los datos que usted introduce en la extensión (clientes,
 productos, historial de documentos, compras, inventario) se
-almacenan únicamente en su propio navegador, en su propio equipo.**
+almacenan únicamente en su propio navegador, en su propio equipo.</strong>
 Esta extensión no tiene un servidor propio donde se guarden sus
-datos de negocio, y el desarrollador no tiene acceso a ellos.
-
-Las únicas excepciones —descritas en detalle en las secciones
+datos de negocio, y el desarrollador no tiene acceso a ellos.</p>
+<p>Las únicas excepciones —descritas en detalle en las secciones
 siguientes— son: (a) el envío de correos, que pasa por los servidores
 de Google/Microsoft porque usted vincula su propia cuenta de correo;
 y (b) el sistema de licencias, que envía una huella criptográfica del
 NIT de su empresa (nunca el NIT en sí) para verificar que su licencia
-esté vigente.
-
-Los formularios de contacto de este sitio web son independientes de la
+esté vigente.</p>
+<p>Los formularios de contacto de este sitio web son independientes de la
 extensión: los datos que usted envía por ellos se tratan según la
 sección 6, y los datos que usted introduce dentro de la extensión
-siguen almacenándose únicamente en su navegador.
-
-## 2. Qué información se almacena localmente
-
-Al usar la extensión, usted puede introducir:
-- **Clientes:** NIT/DUI, razón social, nombre comercial, dirección,
-  correo electrónico, teléfono, actividad económica, ubicación
-  geográfica.
-- **Productos:** código, nombre, precio, existencias, tipo de venta.
-- **Historial de documentos (DTE):** código de generación, número de
-  control, sello de recepción de Hacienda, y el JSON firmado completo
-  de cada documento emitido.
-- **Compras, movimientos de inventario, datos de su(s) empresa(s)
-  emisora(s).**
-
-Toda esta información se guarda con las APIs de almacenamiento local
-del propio navegador (`chrome.storage.local` e IndexedDB) — el mismo
+siguen almacenándose únicamente en su navegador.</p>
+<h2>2. Qué información se almacena localmente</h2>
+<p>Al usar la extensión, usted puede introducir:</p>
+<ul>
+<li><strong>Clientes:</strong> NIT/DUI, razón social, nombre comercial, dirección,
+correo electrónico, teléfono, actividad económica, ubicación
+geográfica.</li>
+<li><strong>Productos:</strong> código, nombre, precio, existencias, tipo de venta.</li>
+<li><strong>Historial de documentos (DTE):</strong> código de generación, número de
+control, sello de recepción de Hacienda, y el JSON firmado completo
+de cada documento emitido.</li>
+<li><strong>Compras, movimientos de inventario, datos de su(s) empresa(s)
+emisora(s).</strong></li>
+</ul>
+<p>Toda esta información se guarda con las APIs de almacenamiento local
+del propio navegador (<code>chrome.storage.local</code> e IndexedDB) — el mismo
 mecanismo que usa cualquier extensión para recordar sus preferencias.
-**Nunca se transmite a ningún servidor como parte del uso normal de
-estas funciones.**
-
-## 3. Respaldo (Backup) y restauración
-
-La función "Exportar respaldo" genera un archivo `.json` con estos
+<strong>Nunca se transmite a ningún servidor como parte del uso normal de
+estas funciones.</strong></p>
+<h2>3. Respaldo (Backup) y restauración</h2>
+<p>La función &quot;Exportar respaldo&quot; genera un archivo <code>.json</code> con estos
 mismos datos, que se descarga a su propio equipo (carpeta
-`Facturacion DTE/Respaldos/` dentro de sus Descargas). Ese archivo
+<code>Facturacion DTE/Respaldos/</code> dentro de sus Descargas). Ese archivo
 nunca se envía a ningún servidor — es responsabilidad suya
 protegerlo, ya que contiene información sensible sin cifrar (el
 propio botón de exportar se lo advierte antes de generar el archivo).
 Las cuentas de correo vinculadas (ver sección 4) nunca se incluyen en
-este respaldo.
-
-## 4. Cuentas de correo vinculadas (envío de documentos)
-
-Si usted decide vincular una cuenta de Gmail o Outlook para enviar
+este respaldo.</p>
+<h2>4. Cuentas de correo vinculadas (envío de documentos)</h2>
+<p>Si usted decide vincular una cuenta de Gmail o Outlook para enviar
 documentos por correo, la extensión usa el protocolo estándar OAuth
 2.0: usted inicia sesión directamente en la página oficial de Google o
 Microsoft (la extensión nunca ve ni almacena su contraseña). El
@@ -219,170 +83,154 @@ intercambio técnico del código de autorización por el token de acceso
 de Gmail pasa por un proxy propio en Cloudflare Workers —
 exclusivamente para no exponer una credencial de la aplicación dentro
 de la extensión— que no guarda registro (log) de los tokens que
-procesa. **Outlook, en cambio, no utiliza ningún proxy:** ese
+procesa. <strong>Outlook, en cambio, no utiliza ningún proxy:</strong> ese
 intercambio se realiza 100% directo entre su navegador y los
 servidores de Microsoft. En ambos casos, los tokens de acceso quedan
 cifrados en su propio navegador con una clave que nunca sale de su
-equipo.
-
-Al enviar un correo, el contenido (destinatario, asunto, adjuntos) se
+equipo.</p>
+<p>Al enviar un correo, el contenido (destinatario, asunto, adjuntos) se
 transmite directamente a los servidores de Google o Microsoft, igual
-que si usted lo enviara desde Gmail/Outlook directamente.
-
-## 5. Sistema de licencias
-
-Esta extensión requiere una licencia para algunas funciones
+que si usted lo enviara desde Gmail/Outlook directamente.</p>
+<h2>5. Sistema de licencias</h2>
+<p>Esta extensión requiere una licencia para algunas funciones
 (emisión de nuevos documentos y envío por correo; el resto de la
 aplicación —incluyendo sus datos, Clientes, Productos, Historial,
 Inventario, Backup/Restauración— siempre permanece disponible sin
-importar el estado de la licencia).
-
-Para verificar la licencia, la extensión envía a un servidor de
-licenciamiento del desarrollador:
-- Una **huella criptográfica (hash SHA-256)** del NIT de su empresa
-  — nunca el NIT en texto claro.
-- Un identificador aleatorio de su dispositivo, generado localmente
-  (no identifica a su persona, solo a esta instalación de la
-  extensión).
-- El identificador de la licencia que usted activó.
-- Al momento de activar la licencia (no en cada verificación posterior),
-  el secreto de activación que usted recibió al adquirirla, necesario
-  para validar que la activación es legítima.
-
-**Nunca se envía:** el NIT en texto claro, la razón social, ni
+importar el estado de la licencia).</p>
+<p>Para verificar la licencia, la extensión envía a un servidor de
+licenciamiento del desarrollador:</p>
+<ul>
+<li>Una <strong>huella criptográfica (hash SHA-256)</strong> del NIT de su empresa
+— nunca el NIT en texto claro.</li>
+<li>Un identificador aleatorio de su dispositivo, generado localmente
+(no identifica a su persona, solo a esta instalación de la
+extensión).</li>
+<li>El identificador de la licencia que usted activó.</li>
+<li>Al momento de activar la licencia (no en cada verificación posterior),
+el secreto de activación que usted recibió al adquirirla, necesario
+para validar que la activación es legítima.</li>
+</ul>
+<p><strong>Nunca se envía:</strong> el NIT en texto claro, la razón social, ni
 ningún dato de sus Clientes, Productos, Historial, Compras o
-Inventario.
-
-Este servidor de licenciamiento no tiene ninguna relación con el
+Inventario.</p>
+<p>Este servidor de licenciamiento no tiene ninguna relación con el
 servidor del Ministerio de Hacienda ni con Google/Microsoft — es
-exclusivamente para validar el uso autorizado de la extensión.
-
-## 6. Formularios del sitio web (lacresv.com)
-
-Este sitio ofrece formularios para solicitar LACRE Premium, solicitar
+exclusivamente para validar el uso autorizado de la extensión.</p>
+<h2>6. Formularios del sitio web (lacresv.com)</h2>
+<p>Este sitio ofrece formularios para solicitar LACRE Premium, solicitar
 una cotización de licencia personalizada o hacer una consulta general.
 Esta sección aplica únicamente a los datos enviados mediante esos
 formularios; no aplica a los datos que usted introduce dentro de la
-extensión (secciones 2 a 5).
-
-**Datos que se reciben.** Los que usted escribe en el formulario:
+extensión (secciones 2 a 5).</p>
+<p><strong>Datos que se reciben.</strong> Los que usted escribe en el formulario:
 nombre, correo electrónico, teléfono o WhatsApp (opcional), nombre de
 su empresa o negocio (opcional, solo en la solicitud de cotización),
 cantidad aproximada de empresas y de dispositivos y modalidad
 solicitada (solo en la solicitud de cotización), y el mensaje o
 comentarios. Si usted llega a este sitio desde la extensión, se
 registra únicamente que la solicitud proviene de ella; no se envía
-ningún dato de la extensión, de su empresa ni de su licencia.
-
-**Lo que no se solicita.** Los formularios no piden NIT ni códigos de
-licencia, y le pedimos que no los incluya en el mensaje.
-
-**Finalidad.** Responder su solicitud o consulta, preparar
+ningún dato de la extensión, de su empresa ni de su licencia.</p>
+<p><strong>Lo que no se solicita.</strong> Los formularios no piden NIT ni códigos de
+licencia, y le pedimos que no los incluya en el mensaje.</p>
+<p><strong>Finalidad.</strong> Responder su solicitud o consulta, preparar
 cotizaciones y gestionar el proceso de adquisición y licenciamiento de
 LACRE. Con esa misma finalidad, los datos que usted escribe en el
 formulario se utilizan también para notificar por correo electrónico
-al operador de LACRE de que hay una solicitud nueva por atender.
-
-**Almacenamiento.** Las solicitudes se reciben mediante un servicio
+al operador de LACRE de que hay una solicitud nueva por atender.</p>
+<p><strong>Almacenamiento.</strong> Las solicitudes se reciben mediante un servicio
 propio de LACRE que funciona en Cloudflare y se guardan en una base de
 datos en Cloudflare. El servicio no guarda en esa base de datos la
 dirección IP ni el navegador (agente de usuario) desde el que se envía
 la solicitud. Para evitar abusos, limita la cantidad de solicitudes por
-dirección IP usando únicamente memoria temporal, sin almacenarla.
-
-**Conservación.** Las solicitudes recibidas por los formularios web se
+dirección IP usando únicamente memoria temporal, sin almacenarla.</p>
+<p><strong>Conservación.</strong> Las solicitudes recibidas por los formularios web se
 conservan durante 12 meses desde su recepción y después se eliminan
 mediante un proceso automático. Este plazo se refiere a las solicitudes
 recibidas por los formularios web. Puede pedir la eliminación anticipada
-de su solicitud escribiendo a **aromero@lacresv.com**.
-
-**Uso de los datos.** Los datos de estos formularios no se venden ni se
+de su solicitud escribiendo a <strong><a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a></strong>.</p>
+<p><strong>Uso de los datos.</strong> Los datos de estos formularios no se venden ni se
 usan con fines publicitarios, y este sitio no utiliza rastreadores de
-analítica ni publicidad.
-
-## 7. Automatización comercial de LACRE por WhatsApp
-
-Además de la extensión y de los formularios de contacto (secciones 2 a
+analítica ni publicidad.</p>
+<h2>7. Automatización comercial de LACRE por WhatsApp</h2>
+<p>Además de la extensión y de los formularios de contacto (secciones 2 a
 6), LACRE ofrece un canal de automatización comercial por WhatsApp
-para solicitar y dar seguimiento a **LACRE Premium**. Este canal
-funciona sobre **WhatsApp Business Platform (Cloud API) de Meta** y es
+para solicitar y dar seguimiento a <strong>LACRE Premium</strong>. Este canal
+funciona sobre <strong>WhatsApp Business Platform (Cloud API) de Meta</strong> y es
 un servicio propio de LACRE, independiente de la extensión: nada de lo
 descrito aquí accede a los datos que usted introduce dentro de la
-extensión (secciones 2 a 5).
-
-**Cómo se inicia.** Usted puede solicitar LACRE Premium desde el
+extensión (secciones 2 a 5).</p>
+<p><strong>Cómo se inicia.</strong> Usted puede solicitar LACRE Premium desde el
 formulario de este sitio (que le entrega un código y un enlace para
 continuar por WhatsApp) o escribiendo directamente al número comercial
-de WhatsApp de LACRE.
-
-**Datos que se reciben y procesan:**
-- **Su número de WhatsApp**, tal como lo entrega la plataforma de
-  Meta (sin datos adicionales de su perfil salvo que usted los
-  escriba).
-- Un **identificador técnico de Meta** para su interacción con el
-  número de negocio (cuando la plataforma lo proporciona); no es un
-  dato que identifique a la persona por sí solo.
-- **Metadatos de cada mensaje** que usted envía (un identificador de
-  mensaje y su tipo), únicamente para evitar procesar el mismo mensaje
-  dos veces si Meta lo reintenta. Los avisos de entrega/lectura de
-  WhatsApp se cuentan y, para los mensajes que LACRE le envía, su estado
-  (enviado, entregado, leído o fallido) se anota junto a ese mensaje y
-  se conserva por el mismo plazo que el mensaje.
-- **El texto de sus mensajes de WhatsApp y de las respuestas que
-  recibe** (tanto las del asistente automatizado como, cuando
-  corresponda, las del equipo de LACRE) **se guarda tal como se
-  escribió, durante un plazo limitado de 90 días**, para que una
-  persona del equipo pueda atender su caso, revisar el historial de la
-  conversación y resolver consultas o reclamos sobre su solicitud, su
-  pago o su licencia. Transcurrido ese plazo, los mensajes se eliminan
-  automáticamente. **El secreto de activación de su licencia nunca se
-  guarda en ese historial**: cuando se le reenvía por WhatsApp, el
-  historial registra solo un marcador, sin el secreto.
-- Además, el asistente automatizado conserva una copia **editada** de
-  los últimos turnos de la conversación (como máximo los 10 más
-  recientes por número): antes de guardarla, el sistema sustituye
-  automáticamente correos, teléfonos, códigos de solicitud, enlaces y
-  cadenas largas, y la recorta a unos pocos cientos de caracteres. Esa
-  copia editada sirve solo para que el asistente mantenga el hilo
-  inmediato de la conversación; al llegar nuevos mensajes, los turnos
-  más antiguos se eliminan automáticamente.
-- **Los datos de su solicitud**: nombre, correo electrónico y nombre
-  de su empresa (los tres opcionales, igual que en el formulario web;
-  también pueden ser registrados por el equipo de LACRE a petición suya
-  durante la atención), la constancia de que usted aceptó los Términos y
-  Condiciones, el código público de seguimiento, el estado de la
-  solicitud y sus fechas.
-- **Datos del pago**, cuando corresponda: si su solicitud llega a la
-  etapa de pago, se genera un enlace de pago de Wompi y se guarda su
-  identificador, y al confirmarse el pago se guarda el identificador
-  de la transacción de Wompi, el monto y la fecha de confirmación.
-  **LACRE nunca recibe ni almacena los datos de su tarjeta**; esos
-  datos son tratados directamente por Wompi según sus propias
-  condiciones (ver también la sección 4 de los
-  <a href="/terminos">Términos y Condiciones</a>).
-- **Registro interno de auditoría**: qué acción ejecutó el asistente
-  automatizado (por ejemplo, "consultar precio" o "vincular código") y
-  su resultado. Este registro se guarda sin datos personales, solo
-  códigos técnicos.
-- Si su caso requiere que lo atienda una persona, se registra el
-  motivo técnico de esa derivación.
-- **Registro de las acciones del equipo de LACRE** sobre su caso (por
-  ejemplo: tomar la conversación, responderle, iniciar o completar su
-  solicitud, enviarle el enlace de pago, cancelar una solicitud que aún
-  no se pagó, reenviarle su licencia o revocarla): fecha,
-  acción, resultado y, cuando corresponda, el motivo. Ese registro
-  **no incluye el texto de la conversación ni ningún secreto** y se
-  conserva 24 meses por razones de auditoría del servicio.
-
-**Avisos internos al operador.** Cuando ocurre un evento relevante de
+de WhatsApp de LACRE.</p>
+<p><strong>Datos que se reciben y procesan:</strong></p>
+<ul>
+<li><strong>Su número de WhatsApp</strong>, tal como lo entrega la plataforma de
+Meta (sin datos adicionales de su perfil salvo que usted los
+escriba).</li>
+<li>Un <strong>identificador técnico de Meta</strong> para su interacción con el
+número de negocio (cuando la plataforma lo proporciona); no es un
+dato que identifique a la persona por sí solo.</li>
+<li><strong>Metadatos de cada mensaje</strong> que usted envía (un identificador de
+mensaje y su tipo), únicamente para evitar procesar el mismo mensaje
+dos veces si Meta lo reintenta. Los avisos de entrega/lectura de
+WhatsApp se cuentan y, para los mensajes que LACRE le envía, su estado
+(enviado, entregado, leído o fallido) se anota junto a ese mensaje y
+se conserva por el mismo plazo que el mensaje.</li>
+<li><strong>El texto de sus mensajes de WhatsApp y de las respuestas que
+recibe</strong> (tanto las del asistente automatizado como, cuando
+corresponda, las del equipo de LACRE) <strong>se guarda tal como se
+escribió, durante un plazo limitado de 90 días</strong>, para que una
+persona del equipo pueda atender su caso, revisar el historial de la
+conversación y resolver consultas o reclamos sobre su solicitud, su
+pago o su licencia. Transcurrido ese plazo, los mensajes se eliminan
+automáticamente. <strong>El secreto de activación de su licencia nunca se
+guarda en ese historial</strong>: cuando se le reenvía por WhatsApp, el
+historial registra solo un marcador, sin el secreto.</li>
+<li>Además, el asistente automatizado conserva una copia <strong>editada</strong> de
+los últimos turnos de la conversación (como máximo los 10 más
+recientes por número): antes de guardarla, el sistema sustituye
+automáticamente correos, teléfonos, códigos de solicitud, enlaces y
+cadenas largas, y la recorta a unos pocos cientos de caracteres. Esa
+copia editada sirve solo para que el asistente mantenga el hilo
+inmediato de la conversación; al llegar nuevos mensajes, los turnos
+más antiguos se eliminan automáticamente.</li>
+<li><strong>Los datos de su solicitud</strong>: nombre, correo electrónico y nombre
+de su empresa (los tres opcionales, igual que en el formulario web;
+también pueden ser registrados por el equipo de LACRE a petición suya
+durante la atención), la constancia de que usted aceptó los Términos y
+Condiciones, el código público de seguimiento, el estado de la
+solicitud y sus fechas.</li>
+<li><strong>Datos del pago</strong>, cuando corresponda: si su solicitud llega a la
+etapa de pago, se genera un enlace de pago de Wompi y se guarda su
+identificador, y al confirmarse el pago se guarda el identificador
+de la transacción de Wompi, el monto y la fecha de confirmación.
+<strong>LACRE nunca recibe ni almacena los datos de su tarjeta</strong>; esos
+datos son tratados directamente por Wompi según sus propias
+condiciones (ver también la sección 4 de los
+<a href="/terminos">Términos y Condiciones</a>).</li>
+<li><strong>Registro interno de auditoría</strong>: qué acción ejecutó el asistente
+automatizado (por ejemplo, &quot;consultar precio&quot; o &quot;vincular código&quot;) y
+su resultado. Este registro se guarda sin datos personales, solo
+códigos técnicos.</li>
+<li>Si su caso requiere que lo atienda una persona, se registra el
+motivo técnico de esa derivación.</li>
+<li><strong>Registro de las acciones del equipo de LACRE</strong> sobre su caso (por
+ejemplo: tomar la conversación, responderle, iniciar o completar su
+solicitud, enviarle el enlace de pago, cancelar una solicitud que aún
+no se pagó, reenviarle su licencia o revocarla): fecha,
+acción, resultado y, cuando corresponda, el motivo. Ese registro
+<strong>no incluye el texto de la conversación ni ningún secreto</strong> y se
+conserva 24 meses por razones de auditoría del servicio.</li>
+</ul>
+<p><strong>Avisos internos al operador.</strong> Cuando ocurre un evento relevante de
 su solicitud (nueva solicitud, pago recibido, o que su caso pasó a
 revisión manual), LACRE envía un correo interno al operador con el
 tipo de evento, el código de la solicitud y su número de WhatsApp
-**parcialmente oculto** (por ejemplo, terminado en «…1234»). Ese aviso
-interno **nunca incluye** el texto de su conversación, ni su correo,
-ni ningún dato de pago.
-
-**Atención por una persona.** Si usted lo pide, o si el asistente
+<strong>parcialmente oculto</strong> (por ejemplo, terminado en «…1234»). Ese aviso
+interno <strong>nunca incluye</strong> el texto de su conversación, ni su correo,
+ni ningún dato de pago.</p>
+<p><strong>Atención por una persona.</strong> Si usted lo pide, o si el asistente
 automatizado no puede resolver su caso, una persona del equipo de
 LACRE puede leer el historial de su conversación (dentro del plazo de
 conservación), consultar los datos de su solicitud y responderle por
@@ -390,107 +238,99 @@ el mismo WhatsApp. Mientras una persona atiende su caso, el asistente
 automatizado deja de responder. Las respuestas con texto libre solo se
 envían dentro de las 24 horas siguientes a su último mensaje, que es
 la ventana que establece WhatsApp; fuera de ella solo se podrían usar
-mensajes de plantilla aprobados por Meta.
-
-**Finalidad.** Dar seguimiento a su solicitud de LACRE Premium,
+mensajes de plantilla aprobados por Meta.</p>
+<p><strong>Finalidad.</strong> Dar seguimiento a su solicitud de LACRE Premium,
 permitirle continuar la conversación por WhatsApp, atender sus
 consultas y reclamos, generarle y confirmarle el pago, y contactarlo
-si su caso requiere revisión manual.
-
-**Conservación.** A diferencia de las solicitudes de los formularios
+si su caso requiere revisión manual.</p>
+<p><strong>Conservación.</strong> A diferencia de las solicitudes de los formularios
 de contacto (sección 6, con borrado automático a los 12 meses), en
-este canal los plazos son los siguientes:
-- **Texto de los mensajes de WhatsApp** (sus mensajes y las respuestas
-  recibidas): **90 días**, con borrado automático.
-- **Registro de las acciones del equipo de LACRE** sobre su caso:
-  **24 meses**, con borrado automático.
-- **Estado de la conversación** (sin texto: su número, si la atiende el
-  asistente o una persona, prioridad y motivo técnico): se elimina
-  automáticamente cuando la conversación está inactiva y ya no quedan
-  mensajes suyos guardados.
-- **Su solicitud, el historial de transiciones y el registro de
-  pagos**: **no tienen un borrado automático programado**; se
-  conservan mientras sean necesarios para dar seguimiento a su
-  solicitud, por razones de auditoría del servicio y por las
-  obligaciones contables que correspondan.
-
-Puede solicitar la eliminación anticipada de sus mensajes y de sus
+este canal los plazos son los siguientes:</p>
+<ul>
+<li><strong>Texto de los mensajes de WhatsApp</strong> (sus mensajes y las respuestas
+recibidas): <strong>90 días</strong>, con borrado automático.</li>
+<li><strong>Registro de las acciones del equipo de LACRE</strong> sobre su caso:
+<strong>24 meses</strong>, con borrado automático.</li>
+<li><strong>Estado de la conversación</strong> (sin texto: su número, si la atiende el
+asistente o una persona, prioridad y motivo técnico): se elimina
+automáticamente cuando la conversación está inactiva y ya no quedan
+mensajes suyos guardados.</li>
+<li><strong>Su solicitud, el historial de transiciones y el registro de
+pagos</strong>: <strong>no tienen un borrado automático programado</strong>; se
+conservan mientras sean necesarios para dar seguimiento a su
+solicitud, por razones de auditoría del servicio y por las
+obligaciones contables que correspondan.</li>
+</ul>
+<p>Puede solicitar la eliminación anticipada de sus mensajes y de sus
 demás datos; vea la sección 11 y la página
-<a href="/eliminacion-datos">Eliminación de Datos</a>.
-
-**Uso de sus datos.** Los datos de este canal no se venden ni se usan
-con fines publicitarios.
-
-**Servicio de terceros.** Este canal depende de WhatsApp Business
+<a href="/eliminacion-datos">Eliminación de Datos</a>.</p>
+<p><strong>Uso de sus datos.</strong> Los datos de este canal no se venden ni se usan
+con fines publicitarios.</p>
+<p><strong>Servicio de terceros.</strong> Este canal depende de WhatsApp Business
 Platform (Meta). Al escribir al número comercial de LACRE, el
 tratamiento que Meta/WhatsApp haga de su cuenta y de su uso de la
 plataforma se rige por las condiciones y política de privacidad
-propias de WhatsApp/Meta, que LACRE no controla.
-
-## 8. Portal de Hacienda (admin.factura.gob.sv)
-
-La extensión interactúa con la página del portal de Facturación
+propias de WhatsApp/Meta, que LACRE no controla.</p>
+<h2>8. Portal de Hacienda (admin.factura.gob.sv)</h2>
+<p>La extensión interactúa con la página del portal de Facturación
 Electrónica para leer y, cuando usted lo solicita, rellenar
 automáticamente datos del documento que está creando. Esta
 interacción ocurre únicamente dentro de esa página oficial del
 Ministerio de Hacienda — la extensión no envía esos datos a ningún
-otro sitio.
-
-## 9. Qué NO hace esta extensión
-
-- No vende ni comparte su información con terceros con fines
-  publicitarios o comerciales.
-- No incluye rastreadores de analítica ni publicidad.
-- No accede a su navegación fuera del portal de Hacienda (la
-  extensión solo se ejecuta activamente sobre
-  `admin.factura.gob.sv`).
-- No recopila su ubicación, historial de navegación general, ni
-  ningún dato biométrico.
-
-## 10. Permisos del navegador que solicita la extensión, y por qué
-
-| Permiso | Para qué se usa |
-|---|---|
-| `storage` / `unlimitedStorage` | Guardar sus datos localmente (sección 2). |
-| `tabs` / `activeTab` / `scripting` | Leer/rellenar datos en la pestaña del portal de Hacienda cuando usted lo solicita. |
-| `downloads` | Organizar y descargar PDFs/JSON de sus documentos y sus respaldos en carpetas de su elección. |
-| `sidePanel` | Mostrar el panel de la extensión en la barra lateral de Chrome. |
-| `identity` | El flujo de vinculación de cuenta de correo (sección 4). |
-
-## 11. Cómo eliminar su información
-
-Los datos almacenados por LACRE dentro del almacenamiento de la extensión se eliminan al desinstalarla. Los archivos que usted haya descargado a su equipo, como respaldos, PDF o JSON, no se eliminan automáticamente. También puede eliminar registros
+otro sitio.</p>
+<h2>9. Qué NO hace esta extensión</h2>
+<ul>
+<li>No vende ni comparte su información con terceros con fines
+publicitarios o comerciales.</li>
+<li>No incluye rastreadores de analítica ni publicidad.</li>
+<li>No accede a su navegación fuera del portal de Hacienda (la
+extensión solo se ejecuta activamente sobre
+<code>admin.factura.gob.sv</code>).</li>
+<li>No recopila su ubicación, historial de navegación general, ni
+ningún dato biométrico.</li>
+</ul>
+<h2>10. Permisos del navegador que solicita la extensión, y por qué</h2>
+<table>
+<thead>
+<tr>
+<th>Permiso</th>
+<th>Para qué se usa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>storage</code> / <code>unlimitedStorage</code></td>
+<td>Guardar sus datos localmente (sección 2).</td>
+</tr>
+<tr>
+<td><code>tabs</code> / <code>activeTab</code> / <code>scripting</code></td>
+<td>Leer/rellenar datos en la pestaña del portal de Hacienda cuando usted lo solicita.</td>
+</tr>
+<tr>
+<td><code>downloads</code></td>
+<td>Organizar y descargar PDFs/JSON de sus documentos y sus respaldos en carpetas de su elección.</td>
+</tr>
+<tr>
+<td><code>sidePanel</code></td>
+<td>Mostrar el panel de la extensión en la barra lateral de Chrome.</td>
+</tr>
+<tr>
+<td><code>identity</code></td>
+<td>El flujo de vinculación de cuenta de correo (sección 4).</td>
+</tr>
+</tbody></table>
+<h2>11. Cómo eliminar su información</h2>
+<p>Los datos almacenados por LACRE dentro del almacenamiento de la extensión se eliminan al desinstalarla. Los archivos que usted haya descargado a su equipo, como respaldos, PDF o JSON, no se eliminan automáticamente. También puede eliminar registros
 individuales desde la propia interfaz de la extensión en cualquier
-momento.
-
-Para los datos de los formularios de contacto (sección 6) o de su
+momento.</p>
+<p>Para los datos de los formularios de contacto (sección 6) o de su
 solicitud de LACRE Premium por el canal web o de WhatsApp (sección 7),
 puede solicitar su eliminación escribiendo a
-**aromero@lacresv.com**. Vea el procedimiento completo, qué
+<strong><a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a></strong>. Vea el procedimiento completo, qué
 información necesitamos para localizar sus datos y las excepciones
-aplicables en <a href="/eliminacion-datos">Eliminación de Datos</a>.
-
-## 12. Contacto
-
-Para preguntas sobre esta política, escriba a:
-**aromero@lacresv.com**
-
+aplicables en <a href="/eliminacion-datos">Eliminación de Datos</a>.</p>
+<h2>12. Contacto</h2>
+<p>Para preguntas sobre esta política, escriba a:
+<strong><a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a></strong></p>
 </div>
   </div>
-</main>
-
-<footer>
-  <div class="footer-inner">
-    <span>© 2026 LACRE</span>
-    <div class="footer-links">
-      <a href="/">Inicio</a>
-      <a href="/terminos">Términos y Condiciones</a>
-      <a href="/reembolso">Política de Reembolso</a>
-      <a href="/eliminacion-datos">Eliminación de Datos</a>
-      <a href="mailto:aromero@lacresv.com">aromero@lacresv.com</a>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>
+</main><footer><div class="wrap foot"><a class="brand" href="/"><img class="brand-mark" src="/assets/lacre-mark.svg" alt=""><span>LACRE</span><span class="brand-divider" aria-hidden="true"></span><img class="brand-bird" src="/assets/torogoz.png" alt="Torogoz de LACRE"></a><p>Herramientas para tu trabajo con DTE.</p><nav aria-label="Información legal"><a href="/privacidad">Privacidad</a><a href="/terminos">Términos y condiciones</a><a href="/reembolso">Reembolsos</a><a href="/eliminacion-datos">Eliminación de datos</a></nav><small>© 2026 LACRE · El Salvador</small></div></footer><script src="/assets/lacre-ui.js" defer></script></body></html>

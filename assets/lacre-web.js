@@ -129,8 +129,8 @@
       boton: "Enviar mensaje",
       mensaje: "Mensaje",
       mensajeObligatorio: true,
-      exitoTitulo: "Mensaje recibido",
-      exito: "Mensaje recibido. Nos pondremos en contacto contigo."
+      exitoTitulo: "Consulta recibida",
+      exito: "Recibimos su consulta. También puede enviarla por WhatsApp con el botón de abajo."
     }
   };
 
@@ -149,7 +149,8 @@
       formato_invalido: "Escriba un correo electrónico válido, por ejemplo nombre@ejemplo.com."
     },
     telefono: {
-      formato_invalido: "Escriba un teléfono válido (7 a 20 caracteres: números, espacios, +, - o paréntesis) o déjelo en blanco."
+      obligatorio: "Escriba su número de WhatsApp con el código de país.",
+      formato_invalido: "Escriba un WhatsApp válido con código de país (7 a 20 caracteres: números, espacios, +, - o paréntesis)."
     },
     empresas: {
       obligatorio: "Indique la cantidad aproximada de empresas.",
@@ -310,7 +311,8 @@
       if (!v.correo) e.correo = "obligatorio";
       else if (v.correo.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.correo)) e.correo = "formato_invalido";
 
-      if (v.telefono) {
+      if (!v.telefono) e.telefono = "obligatorio";
+      else {
         var digitos = v.telefono.replace(/[^0-9]/g, "").length;
         if (v.telefono.length < 7 || v.telefono.length > 20 || !/^[0-9 +()\-]+$/.test(v.telefono) || digitos < 7) e.telefono = "formato_invalido";
       }
@@ -373,8 +375,10 @@
 
     // `datos`: para "premium", { codigo, whatsappUrl } (whatsappUrl viene TAL CUAL de lacre-ventas, con el
     // código ya incluido en el texto); para "personalizada", se arma aquí un enlace de WhatsApp con el
-    // mensaje fijo aprobado (sin código: lacre-contacto no genera ninguno); "consulta" no muestra WhatsApp.
+    // mensaje fijo aprobado; consulta prepara el mismo texto enviado al formulario.
     function mostrarExito(tipo, datos) {
+      var continuar = $("whatsapp-continuar-enlace");
+      if (continuar) continuar.textContent = tipo === "consulta" ? "Enviar esta consulta por WhatsApp" : "Continuar por WhatsApp";
       var t = TEXTOS_TIPO[tipo] || TEXTOS_TIPO.consulta;
       form.hidden = true;
       exitoTitulo.textContent = t.exitoTitulo;
@@ -383,6 +387,8 @@
         mostrarContinuarWhatsApp(datos.whatsappUrl, datos.codigo || null);
       } else if (tipo === "personalizada") {
         mostrarContinuarWhatsApp(enlaceWhatsApp(MENSAJE_WHATSAPP_PERSONALIZADA), null);
+      } else if (tipo === "consulta" && datos) {
+        mostrarContinuarWhatsApp(enlaceWhatsApp("Hola, quiero hacer una consulta sobre LACRE.\n\nNombre: " + datos.nombre + "\nCorreo: " + datos.correo + "\nWhatsApp: " + datos.telefono + "\n\nConsulta:\n" + datos.mensaje), null);
       } else {
         mostrarContinuarWhatsApp(null, null);
       }
@@ -464,7 +470,7 @@
         clearTimeout(temporizador);
         return resp.json().catch(function () { return {}; }).then(function (cuerpo) {
           ocupado(false);
-          if (resp.status === 201 && cuerpo && cuerpo.ok) { mostrarExito(v.tipo); return; }
+          if (resp.status === 201 && cuerpo && cuerpo.ok) { mostrarExito(v.tipo, v); return; }
           if (resp.status === 400 && cuerpo && cuerpo.campos) {
             var conocidos = {};
             Object.keys(cuerpo.campos).forEach(function (c) { if (ID_CAMPO[c]) conocidos[c] = cuerpo.campos[c]; });
